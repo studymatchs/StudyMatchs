@@ -36,7 +36,7 @@ class Message extends React.Component {
 
 /** Require a document to be passed to this component. */
 Message.propTypes = {
-  Message: PropTypes.object.isRequired,
+  message: PropTypes.object.isRequired,
   notes: PropTypes.array.isRequired,
 };
 

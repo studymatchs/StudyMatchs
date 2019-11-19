@@ -4,7 +4,7 @@ import { Container, Header, Loader, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Message from '../components/Message';
-import { Messages } from '../../api/Message/Messages';
+import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -22,7 +22,7 @@ class ListMessages extends React.Component {
           <Header as="h2" textAlign="center" inverted>List Messages</Header>
           <Card.Group>
             {/* eslint-disable-next-line max-len */}
-            {this.props.Messages.map((Message, index) => <Message key={index} Message={Message} notes={this.props.notes.filter(note => (note.MessageId === Message._id))}/>)}
+            {this.props.Messages.map((message, index) => <Message key={index} Message={message} notes={this.props.notes.filter(note => (note.MessageId === Message._id))}/>)}
           </Card.Group>
         </Container>
     );
