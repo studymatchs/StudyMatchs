@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Contacts } from '../../api/contact/Contacts';
+import { Messages } from '../../api/message/Messages';
 
 /* eslint-disable no-console */
 
@@ -8,6 +9,11 @@ import { Contacts } from '../../api/contact/Contacts';
 function addContact(data) {
   console.log(`  Adding: ${data.firstName} ${data.lastName} (${data.owner})`);
   Contacts.insert(data);
+}
+
+function addMessage(data) {
+  console.log(`  Adding: ${data.description} (${data.owner})`);
+  Messages.insert(data);
 }
 
 /** Initialize the collection if empty. */

@@ -11,12 +11,6 @@ class Message extends React.Component {
     return (
         <Card>
           <Card.Content>
-            <Image
-                floated='right'
-                size='mini'
-            />
-            <Card.Header>{this.props.message.firstName} {this.props.message.lastName}</Card.Header>
-            <Card.Meta>{this.props.message.address}</Card.Meta>
             <Card.Description>
               {this.props.message.description}
             </Card.Description>
@@ -36,7 +30,7 @@ class Message extends React.Component {
 
 /** Require a document to be passed to this component. */
 Message.propTypes = {
-  Message: PropTypes.object.isRequired,
+  message: PropTypes.object.isRequired,
   notes: PropTypes.array.isRequired,
 };
 

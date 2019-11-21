@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Segment, Header } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
-import TextField from 'uniforms-semantic/TextField';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import SubmitField from 'uniforms-semantic/SubmitField';
@@ -21,12 +20,12 @@ class AddMessage extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { description, destion } = data;
+    const { description } = data;
     const owner = Meteor.user().username;
     Messages.insert({ description, owner },
       (error) => {
         if (error) {
-          swal('Error', error.messages, 'error');
+          swal('Error', error.message, 'error');
         } else {
           swal('Success', 'Item added successfully', 'success');
           formRef.reset();
