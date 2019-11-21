@@ -14,7 +14,7 @@ class NavBar extends React.Component {
       <Menu style={menuStyle} attached="top" borderless inverted color='green'>
         {this.props.currentUser ? (
             <Menu.Item as={NavLink} activeClassName="" exact to="/welcome">
-              <Image src="../../public/images/StudyMatchsLogoWithDescription.png">StudyMatchs</Image>
+              <Image floated="right" size="small" src="images/StudyMatchsLogoWithDescription.PNG"/>
             </Menu.Item>
         ) : (
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
