@@ -21,7 +21,7 @@ class Message extends React.Component {
             </Feed>
           </Card.Content>
           <Card.Content extra>
-            <AddNote owner={this.props.message.owner} MessageId={this.props.message._id}/>
+            <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
           </Card.Content>
         </Card>
     );
