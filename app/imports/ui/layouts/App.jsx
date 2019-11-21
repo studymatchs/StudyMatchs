@@ -11,7 +11,8 @@ import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
 import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
-import ListContacts from '../pages/ListContacts';
+import Schedule from '../pages/Schedule';
+import AddStudySession from '../pages/AddStudySession';
 import ListContactsAdmin from '../pages/ListContactsAdmin';
 import AddContact from '../pages/AddContact';
 import EditContact from '../pages/EditContact';
@@ -27,8 +28,9 @@ class App extends React.Component {
               <Route exact path="/" component={Landing}/>
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
-              <ProtectedRoute path="/list" component={ListContacts}/>
+              <Route path="/list" component={Schedule}/>
               <ProtectedRoute path="/add" component={AddContact}/>
+              <ProtectedRoute path="/addS" component={AddStudySession}/>
               <ProtectedRoute path="/edit/:_id" component={EditContact}/>
               <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
