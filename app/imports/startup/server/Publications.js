@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Contacts } from '../../api/contact/Contacts';
+import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
 
 /** This subscription publishes only the documents associated with the logged in user */
