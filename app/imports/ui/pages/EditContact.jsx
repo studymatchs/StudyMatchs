@@ -18,8 +18,8 @@ class EditContact extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { firstName, lastName, address, image, description, _id } = data;
-    Contacts.update(_id, { $set: { firstName, lastName, address, image, description } }, (error) => (error ?
+    const { firstName, lastName, sign, gpa, image, description, _id } = data;
+    Contacts.update(_id, { $set: { firstName, lastName, sign, gpa, image, description } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -34,12 +34,13 @@ class EditContact extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Edit Contact</Header>
+            <Header as="h2" textAlign="center" inverted>Edit Contact</Header>
             <AutoForm schema={ContactSchema} onSubmit={data => this.submit(data)} model={this.props.doc}>
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
-                <TextField name='address'/>
+                <TextField name='sign'/>
+                <TextField name='gpa'/>
                 <TextField name='image'/>
                 <LongTextField name='description'/>
                 <SubmitField value='Submit'/>

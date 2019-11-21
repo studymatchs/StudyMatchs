@@ -9,7 +9,8 @@ const Contacts = new Mongo.Collection('Contacts');
 const ContactSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
-  address: String,
+  sign: String,
+  gpa: String,
   image: String,
   description: String,
   owner: String,
