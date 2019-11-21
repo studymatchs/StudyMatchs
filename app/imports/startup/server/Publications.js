@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Contacts } from '../../api/contact/Contacts';
+import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
 
 /** This subscription publishes only the documents associated with the logged in user */
@@ -16,6 +17,15 @@ Meteor.publish('Contacts', function publish() {
 Meteor.publish('ContactsAdmin', function publish() {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
     return Contacts.find();
+  }
+  return this.ready();
+});
+
+/** This subscription publishes only the documents associated with the logged in user */
+Meteor.publish('Messages', function publish() {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Messages.find({ owner: username });
   }
   return this.ready();
 });

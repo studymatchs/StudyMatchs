@@ -5,6 +5,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Message from '../components/Message';
 import { Messages } from '../../api/message/Messages';
+import Contact from '../components/Contact';
+import { Contacts } from '../../api/contact/Contacts';
 import { Notes } from '../../api/note/Notes';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -22,7 +24,7 @@ class ListMessages extends React.Component {
           <Header as="h2" textAlign="center" inverted>List Messages</Header>
           <Card.Group>
             {/* eslint-disable-next-line max-len */}
-            {this.props.Messages.map((message, index) => <Message key={index} Message={message} notes={this.props.notes.filter(note => (note.MessageId === Message._id))}/>)}
+            {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.messageId === message._id))}/>)}
           </Card.Group>
         </Container>
     );
@@ -42,7 +44,7 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('Messages');
   const subscription2 = Meteor.subscribe('Notes');
   return {
-    Messages: Messages.find({}).fetch(),
+    messages: Messages.find({}).fetch(),
     notes: Notes.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
