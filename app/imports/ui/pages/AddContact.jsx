@@ -15,7 +15,8 @@ import { Contacts } from '../../api/contact/Contacts';
 const formSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
-  address: String,
+  sign: String,
+  gpa: String,
   image: String,
   description: String,
 });
@@ -25,9 +26,9 @@ class AddContact extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { firstName, lastName, address, image, description } = data;
+    const { firstName, lastName, sign, gpa, image, description } = data;
     const owner = Meteor.user().username;
-    Contacts.insert({ firstName, lastName, address, image, description, owner },
+    Contacts.insert({ firstName, lastName, sign, gpa, image, description, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -44,12 +45,13 @@ class AddContact extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Contact</Header>
+            <Header as="h2" textAlign="center" inverted>Add Contact</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
-                <TextField name='address'/>
+                <TextField name='sign'/>
+                <TextField name='gpa'/>
                 <TextField name='image'/>
                 <LongTextField name='description'/>
                 <SubmitField value='Submit'/>
