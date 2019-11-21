@@ -24,7 +24,7 @@ class ListMessages extends React.Component {
           <Header as="h2" textAlign="center" inverted>List Messages</Header>
           <Card.Group>
             {/* eslint-disable-next-line max-len */}
-            {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.messageId === message._id))}/>)}
+            {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
           </Card.Group>
         </Container>
     );
