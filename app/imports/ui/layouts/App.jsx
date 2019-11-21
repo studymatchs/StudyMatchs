@@ -17,6 +17,7 @@ import AddContact from '../pages/AddContact';
 import EditContact from '../pages/EditContact';
 import UserLanding from '../pages/UserLanding';
 import AddMessage from '../pages/AddMessage';
+import ListMessages from '../pages/ListMessages';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
