@@ -20,15 +20,15 @@ class ListMessages extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     return (
-        <div className="studymachs-message-background">
-        <Container>
-          <Header as="h2" textAlign="center" inverted>List Messages</Header>
-          <Card.Group>
-            {/* eslint-disable-next-line max-len */}
-            {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
-          </Card.Group>
-        </Container>
-        </div>
+          <div className="studymachs-message-background-image">
+            <Container>
+              <Header as="h2" textAlign="center" inverted>List Messages</Header>
+              <Card.Group>
+                {/* eslint-disable-next-line max-len */}
+                {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
+              </Card.Group>
+            </Container>
+          </div>
     );
   }
 }
