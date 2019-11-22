@@ -11,6 +11,7 @@ class Message extends React.Component {
     return (
         <Card>
           <Card.Content>
+            <Card.Header>{this.props.message.Name} {this.props.message.Name}</Card.Header>
             <Card.Description>
               {this.props.message.description}
             </Card.Description>
