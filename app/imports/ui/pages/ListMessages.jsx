@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Message from '../components/Message';
@@ -27,7 +27,9 @@ class ListMessages extends React.Component {
                 {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
               </Card.Group>
 
-              
+              <div className="ui center aligned container">
+                <Button as={NavLink} activeClassName="active" exact to="/addS" key='addS'>Add Session</Button>
+              </div>
 
             </Container>
           </div>
