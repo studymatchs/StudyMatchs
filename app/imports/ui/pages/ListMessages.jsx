@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Button } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button, Menu } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Message from '../components/Message';
 import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
-import { withRouter, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListMessages extends React.Component {
@@ -28,7 +28,7 @@ class ListMessages extends React.Component {
               </Card.Group>
 
               <div className="ui center aligned container">
-                <Button as={NavLink} activeClassName="active" exact to="/addS" key='addS'>Add Session</Button>
+                <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
               </div>
 
             </Container>
