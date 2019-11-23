@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Message from '../components/Message';
 import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
+import { withRouter, NavLink } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListMessages extends React.Component {
@@ -25,6 +26,9 @@ class ListMessages extends React.Component {
                 {/* eslint-disable-next-line max-len */}
                 {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
               </Card.Group>
+
+              
+
             </Container>
           </div>
     );
