@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Segment, Header } from 'semantic-ui-react';
+import { Grid, Segment, Header, Button, Menu } from 'semantic-ui-react';
 import AutoForm from 'uniforms-semantic/AutoForm';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
@@ -10,6 +10,7 @@ import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { Messages } from '../../api/message/Messages';
 import TextField from 'uniforms-semantic/TextField';
+import { NavLink } from 'react-router-dom';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
@@ -47,6 +48,7 @@ class AddMessage extends React.Component {
                 <TextField name='Name'/>
                 <LongTextField name='description'/>
                 <SubmitField value='Submit'/>
+                <Button as={NavLink} activeClassName="active" exact to="/ListMessages" key='ListMessages'>List Message</Button>
                 <ErrorsField/>
               </Segment>
             </AutoForm>
