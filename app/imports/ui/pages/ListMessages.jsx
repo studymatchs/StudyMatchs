@@ -21,7 +21,7 @@ class ListMessages extends React.Component {
     return (
           <div className="studymachs-message-background-image">
             <Container>
-              <Header as="h2" textAlign="center" inverted>List Messages</Header>
+              <Header as="h2" textAlign="center">Message Boards</Header>
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}

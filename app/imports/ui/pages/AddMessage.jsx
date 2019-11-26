@@ -40,20 +40,22 @@ class AddMessage extends React.Component {
   render() {
     let fRef = null;
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add Message</Header>
-            <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
-              <Segment>
-                <TextField name='Name'/>
-                <LongTextField name='description'/>
-                <SubmitField value='Submit'/>
-                <Button as={NavLink} activeClassName="active" exact to="/ListMessages" key='ListMessages'>List Message</Button>
-                <ErrorsField/>
-              </Segment>
-            </AutoForm>
-          </Grid.Column>
-        </Grid>
+        <div className="studymachs-make-message-background-image">
+          <Grid container centered>
+            <Grid.Column>
+              <Header as="h2" textAlign="center" inverted>Post Message Board</Header>
+              <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
+                <Segment>
+                  <TextField name='Name'/>
+                  <LongTextField name='description'/>
+                  <SubmitField value='Submit'/>
+                  <Button as={NavLink} activeClassName="active" exact to="/ListMessages" key='ListMessages'>List Message Boards</Button>
+                  <ErrorsField/>
+                </Segment>
+              </AutoForm>
+            </Grid.Column>
+          </Grid>
+        </div>
     );
   }
 }

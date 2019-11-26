@@ -4,6 +4,13 @@
 }
 
 .studymachs-message-background-image {
+  background-image: url('https://scienceforwork.com/wp-content/uploads/2018/05/Effective-team-communication.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.studymachs-make-message-background-image {
   background-image: url('https://ju.se/images/18.31b7ae5314e53427efe2f175/1520578556837/Pre-departure.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
