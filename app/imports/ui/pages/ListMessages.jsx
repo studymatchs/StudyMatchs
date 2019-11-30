@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Button, Menu } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button, Icon, Image, Modal  } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Message from '../components/Message';
@@ -24,6 +24,17 @@ class ListMessages extends React.Component {
               <Header as="h2" textAlign="center">Message Boards</Header>
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
+
+                <Modal trigger={<Button>Scrolling Content Modal</Button>}>
+                  <Modal.Header>Profile Picture</Modal.Header>
+                  <Modal.Content image scrolling>
+                    <Modal.Description>
+                      <Header>Modal Header</Header>
+                      {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
+                    </Modal.Description>
+                  </Modal.Content>
+                </Modal>
+
                 {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
               </Card.Group>
 
