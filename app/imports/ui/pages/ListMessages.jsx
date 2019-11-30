@@ -31,7 +31,9 @@ class ListMessages extends React.Component {
                     <Modal.Description>
                       <Header>Modal Header</Header>
                       {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
-                    </Modal.Description>
+
+                      {this.props.notes.filter(note => (note.contactId === 5))}
+                  </Modal.Description>
                   </Modal.Content>
                 </Modal>
 
