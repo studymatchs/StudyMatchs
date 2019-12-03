@@ -24,7 +24,7 @@ class ListMessages extends React.Component {
               <Header as="h2" textAlign="center">Message Boards</Header>
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
-                {this.props.messages.map((message, index) => <Modal trigger={<Button>Board log{this.props.messages.Name}</Button>}><Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} /> /></Modal>)}
+                {this.props.messages.map((message, index) => <Modal trigger={<Button>Board {this.props.messages.Name}</Button>}><Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} /> /></Modal>)}
               </Card.Group>
 
               <div className="ui center aligned container foot">
