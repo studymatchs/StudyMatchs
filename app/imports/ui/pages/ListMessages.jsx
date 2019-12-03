@@ -18,13 +18,14 @@ class ListMessages extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
+    console.log(this.props.messages.Name);
     return (
           <div className="studymachs-message-background-image">
             <Container>
               <Header as="h2" textAlign="center">Message Boards</Header>
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
-                {this.props.messages.map((message, index) => <Modal trigger={<Button>Board {this.props.messages.Name}</Button>}><Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} /> /></Modal>)}
+                {this.props.messages.map((message, index) => <Modal trigger={<Button>{message.Name} Board</Button>}><Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} /> /></Modal>)}
               </Card.Group>
 
               <div className="ui center aligned container foot">
