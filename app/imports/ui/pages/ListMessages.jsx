@@ -37,7 +37,7 @@ class ListMessages extends React.Component {
                   </Modal.Content>
                 </Modal>
 
-                {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/>)}
+                {this.props.messages.map((message, index) => <Modal trigger={<Button>Board {this.props.messages.Name}</Button>}><Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))}/></Modal>)}
               </Card.Group>
 
               <div className="ui center aligned container">
