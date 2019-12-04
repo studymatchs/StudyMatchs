@@ -4,19 +4,36 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Grid, Icon, Header, Tab, Container, Feed, Segment } from 'semantic-ui-react';
+import { Classmates } from '../../api/classes/Classmates';
+import { Contacts } from '../../api/contact/Contacts';
+import { Notes } from '../../api/note/Notes';
+import Note from '../components/Note';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
+  classmateList(classNam) {
+    console.log();
+    let fullList = '';
+    for (let s = 0; s < this.props.classID.length; s++) {
+      if (this.props.classID[s].className === classNam) {
+        fullList += `${this.props.classID[s].classmateName}`;
+      }
+    }
+    return fullList;
+  }
+
   render() {
     const panes = [
-      { menuItem: 'ICS101', pane: 'ICS101 Content' },
+      { menuItem: 'ICS101', pane: '' },
       { menuItem: 'ICS102', pane: 'ICS102 Content' },
       { menuItem: 'ICS103', pane: 'ICS103 Content' },
     ];
+    // eslint-disable-next-line max-len
+    const panes2 = this.props.userClasses.map((className) => ({ menuItem: className, pane: this.classmateList((className)) }));
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
-          <Header as="h1" centered inverted>Welcome, {this.props.currentUser}</Header>
+          <Header as="h1" inverted>Welcome, {this.props.currentUser}</Header>
           </Container>
         <Grid textAlign='center' stackable container columns={3} >
 
@@ -24,7 +41,7 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="users" inverted/>
             <Header as="h1" inverted>Classmates</Header>
             {/* eslint-disable-next-line max-len */}
-            <Tab panes={panes} renderActiveOnly={false} />
+            <Tab panes={panes2} renderActiveOnly={false} />
           </Grid.Column>
 
           <Grid.Column textAlign='center'>
@@ -36,8 +53,8 @@ class UserLanding extends React.Component {
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
-            <Segment color="white">
-              <Feed color="white">
+            <Segment>
+              <Feed>
             <Feed.Event >
               <Feed.Content>
                 <Feed.Date content="7/7 | 3:30" />
@@ -80,10 +97,18 @@ class UserLanding extends React.Component {
 
 UserLanding.propTypes = {
   currentUser: PropTypes.string,
+  classID: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+  userClasses: PropTypes.array.isRequired,
 };
 
-const UserLandingContainer = withTracker(() => ({
-  currentUser: Meteor.user() ? Meteor.user().username : '',
-}))(UserLanding);
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('Classmates');
 
-export default withRouter(UserLandingContainer);
+  return {
+    classID: Classmates.find({}).fetch(),
+    userClasses: Meteor.user() ? Meteor.user().profile.classes : [],
+    ready: subscription.ready(),
+  };
+})(UserLanding);
