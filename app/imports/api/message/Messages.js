@@ -7,6 +7,7 @@ const Messages = new Mongo.Collection('Messages');
 
 /** Define a schema to specify the structure of each document in the collection. */
 const MessageSchema = new SimpleSchema({
+  Name: String,
   description: String,
   owner: String,
 }, { tracker: Tracker });

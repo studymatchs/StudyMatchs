@@ -11,6 +11,7 @@ class Message extends React.Component {
     return (
         <Card>
           <Card.Content>
+            <Card.Header>{this.props.message.Name} {this.props.message.Name}</Card.Header>
             <Card.Description>
               {this.props.message.description}
             </Card.Description>
@@ -21,7 +22,7 @@ class Message extends React.Component {
             </Feed>
           </Card.Content>
           <Card.Content extra>
-            <AddNote owner={this.props.message.owner} MessageId={this.props.message._id}/>
+            <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
           </Card.Content>
         </Card>
     );
