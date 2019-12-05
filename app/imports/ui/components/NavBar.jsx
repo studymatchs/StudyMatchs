@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import { Menu, Dropdown, Header } from 'semantic-ui-react';
+import { Menu, Dropdown, Header, Image } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
@@ -14,7 +14,7 @@ class NavBar extends React.Component {
       <Menu style={menuStyle} attached="top" borderless inverted color='green'>
         {this.props.currentUser ? (
             <Menu.Item as={NavLink} activeClassName="" exact to="/welcome">
-              <Header inverted as='h1'>StudyMatchs</Header>
+              <Image floated="right" size="small" src="images/StudyMatchsLogoWithDescription.PNG"/>
             </Menu.Item>
         ) : (
             <Menu.Item as={NavLink} activeClassName="" exact to="/">
@@ -22,9 +22,9 @@ class NavBar extends React.Component {
             </Menu.Item>
         )}
         {this.props.currentUser ? (
-            [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Study Session</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>Classes</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>Calendar</Menu.Item>,
+            [<Menu.Item as={NavLink} activeClassName="active" exact to="/add" key='add'>Add Classmate</Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='classes'>Classes</Menu.Item>,
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='schedule'>Schedule</Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/list" key='list'>Chat</Menu.Item>,
               // eslint-disable-next-line max-len
             <Menu.Item as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Add Message</Menu.Item>,

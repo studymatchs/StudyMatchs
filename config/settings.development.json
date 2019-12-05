@@ -1,7 +1,9 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    { "email": "admin@foo.com", "password": "changeme", "classes": ["ICS101", "ART112", "MATH101"], "firstName": "John", "lastName": "Doe", "role": "admin" },
+    { "email": "john@foo.com", "password": "changeme", "classes": ["ICS101", "ART111", "MATH101"], "firstName": "John", "lastName": "Doe" },
+    { "email": "joe@foo.com", "password": "changeme", "classes": ["ICS111", "ART112", "MATH101"], "firstName": "Joe", "lastName": "Schmoe" },
+    { "email": "sarah@foo.com", "password": "changeme", "classes": ["ICS111", "ART111", "MATH101"], "firstName": "Sarah", "lastName": "Rogers" }
   ],
 
   "defaultData": [
@@ -29,6 +31,18 @@
     "description": "Hello!, I am a freshman and Music major at UH.",
     "owner": "admin@foo.com"
   }
-]
+],
+
+  "defaultStudySessions": [{
+    "name": "ICS 314 Study Session", "location": "ICSpace", "time": "Now",
+    "description": "A student who passed ICS 314 is willing to help students taking this course at this time.",
+    "subject": "ICS", "owner": "john@foo.com"
+  },
+    {
+      "name": "ICS 311 Study Session", "location": "POST 127", "time": "Now",
+      "description": "A student who passed ICS 311 is willing to help students taking this course at this time.",
+      "subject": "ICS", "owner": "admin@foo.com"
+    }
+  ]
 }
 
