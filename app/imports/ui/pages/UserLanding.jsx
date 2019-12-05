@@ -3,22 +3,27 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Icon, Header, Tab, Container, Feed, Segment } from 'semantic-ui-react';
+import { Grid, Icon, Header, Tab, Container, Feed, Segment, List } from 'semantic-ui-react';
 import { Classmates } from '../../api/classes/Classmates';
 import { Contacts } from '../../api/contact/Contacts';
 import { Notes } from '../../api/note/Notes';
 import Note from '../components/Note';
+import ListFriend from '../components/ListFriend';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
   classmateList(classNam) {
     console.log();
-    let fullList = '';
+    const fullList = ['None'];
+    let forward = 0;
+    const myName = `${Meteor.user().profile.firstName} ${Meteor.user().profile.lastName}`
     for (let s = 0; s < this.props.classID.length; s++) {
-      if (this.props.classID[s].className === classNam) {
-        fullList += `${this.props.classID[s].classmateName}`;
+      if (this.props.classID[s].className === classNam && this.props.classID[s].classmateName !== myName) {
+        fullList[forward] = `${this.props.classID[s].classmateName}`;
+        forward++;
       }
     }
+    console.log(fullList);
     return fullList;
   }
 
@@ -29,7 +34,7 @@ class UserLanding extends React.Component {
       { menuItem: 'ICS103', pane: 'ICS103 Content' },
     ];
     // eslint-disable-next-line max-len
-    const panes2 = this.props.userClasses.map((className) => ({ menuItem: className, pane: this.classmateList((className)) }));
+    const panes2 = this.props.userClasses.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>

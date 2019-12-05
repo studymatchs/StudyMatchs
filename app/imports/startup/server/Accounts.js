@@ -16,6 +16,11 @@ function createUser(email, password, classes, firstName, lastName, role) {
       lastName: lastName,
       major: '',
       classes: classes,
+      image: '',
+      description: '',
+      sign: '',
+      gpa: '',
+      friendList: [],
     },
   });
   for (let x = 0; x < classes.length; x++) {

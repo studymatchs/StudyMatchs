@@ -19,7 +19,7 @@ class ListContacts extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Contacts</Header>
+          <Header as="h2" textAlign="center">List Friends</Header>
           <Card.Group>
             {/* eslint-disable-next-line max-len */}
             {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact} notes={this.props.notes.filter(note => (note.contactId === contact._id))}/>)}
