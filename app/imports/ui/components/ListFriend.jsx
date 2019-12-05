@@ -8,13 +8,10 @@ class ListFriend extends React.Component {
   render() {
     return (
         <List.Item>
-          <List.Icon/>
           <List.Content>
-            <List.Header>{this.props.friend}</List.Header>
+            <List.Header>Test</List.Header>
             <List.Summary>
-              <Menu secondary>
-                <Menu.Item name='Add friend'/>
-              </Menu>
+              Test
             </List.Summary>
           </List.Content>
         </List.Item>
