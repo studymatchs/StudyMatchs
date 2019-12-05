@@ -24,13 +24,18 @@ class UserLanding extends React.Component {
   }
 
   render() {
-    const panes = [
+    let panes = [
       { menuItem: 'ICS101', pane: '' },
       { menuItem: 'ICS102', pane: 'ICS102 Content' },
       { menuItem: 'ICS103', pane: 'ICS103 Content' },
     ];
     // eslint-disable-next-line max-len
-    const panes2 = this.props.userClasses.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
+    if (typeof (Meteor.user().profile) !== 'undefined') {
+      panes = this.props.userClasses.map((className) => ({
+        menuItem: className,
+        pane: this.classmateList(className),
+      }));
+    }
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
@@ -43,7 +48,7 @@ class UserLanding extends React.Component {
             <Header as="h1" inverted>Classmates</Header>
             {/* eslint-disable-next-line max-len */}
             <Segment>
-            <Tab panes={panes2} renderActiveOnly={false} />
+            <Tab panes={panes} renderActiveOnly={false} />
             </Segment>
           </Grid.Column>
 
