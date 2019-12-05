@@ -91,7 +91,7 @@ export default withTracker(() => {
   const subscription2 = Meteor.subscribe('Sessions');
 
   return {
-    currentUser: Meteor.user() ? `${Meteor.user().profile.firstName} ${Meteor.user().profile.lastName}` : '',
+    currentUser: Meteor.user() ? `${Meteor.user().username}` : '',
     classID: Classmates.find({}).fetch(),
     userClasses: Meteor.user() ? Meteor.user().profile.classes : [],
     sessions: StudySessions.find({}).fetch(),
