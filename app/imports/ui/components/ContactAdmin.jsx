@@ -15,7 +15,7 @@ class ContactAdmin extends React.Component {
                 src={this.props.contact.image}
             />
             <Card.Header>{this.props.contact.firstName} {this.props.contact.lastName}</Card.Header>
-            <Card.Meta>{this.props.contact.sign}</Card.Meta>
+            <Card.Meta>{this.props.contact.zodiacSign}</Card.Meta>
             <Card.Meta>{this.props.contact.gpa}</Card.Meta>
             <Card.Description>
               {this.props.contact.description}
