@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 import { Classmates } from '../../api/classes/Classmates';
+import { UserClasses } from '../../api/classes/UserClasses';
 
 /* eslint-disable no-console */
 
@@ -36,6 +37,18 @@ function createUser(email, password, classes, firstName, lastName, role) {
   if (role === 'admin') {
     Roles.addUsersToRoles(userID, 'admin');
   }
+  UserClasses.insert({
+    userID: email,
+    firstName: firstName,
+    lastName: lastName,
+    major: '',
+    classes: classes,
+    image: '',
+    description: '',
+    sign: '',
+    gpa: '',
+    friendList: [''],
+  });
 }
 
 /** When running app for first time, pass a settings file to set up a default user account. */
