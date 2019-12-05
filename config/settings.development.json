@@ -14,19 +14,19 @@
   ],
 
   "defaultContacts": [{
-  "firstName": "Gal", "lastName": "Gadot", "sign": "Taurus", "gpa": "3.5",
+  "firstName": "Gal", "lastName": "Gadot", "zodiacSign": "Taurus", "gpa": "3.5",
   "image": "https://cdnph.upi.com/sv/ph/og/upi/3461547471907/2019/1/054ab8e380c0922db843a715455feaf7/v1.5/Gal-Gadot-to-voice-Wonder-Woman-in-Lego-Movie-2.jpg",
   "description": "I am a senior student and Computer Sciences major at the University of Hawaii.",
     "owner": "john@foo.com"
 },
   {
-    "firstName": "Alexandra", "lastName": "Daddario", "sign": "Taurus", "gpa": "3.6",
+    "firstName": "Alexandra", "lastName": "Daddario", "zodiacSign": "Taurus", "gpa": "3.6",
     "image": "https://thesassynut.com/wp-content/uploads/2018/05/thumb-1920-600892.jpg",
     "description": "Hey guys, I am a junior student and Math major at UH.",
     "owner": "john@foo.com"
   },
   {
-    "firstName": "Zac", "lastName": "Efron", "sign": "Scorpio", "gpa": "3.2",
+    "firstName": "Zac", "lastName": "Efron", "zodiacSign": "Scorpio", "gpa": "3.2",
     "image": "http://cdn-media.toofab.com/2016/05/18/0518-zac-inset-1200x630.jpg",
     "description": "Hello!, I am a freshman and Music major at UH.",
     "owner": "admin@foo.com"
