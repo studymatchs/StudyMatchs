@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Icon, Header, Tab, Container, Feed, Segment, List } from 'semantic-ui-react';
+import { Grid, Icon, Header, Tab, Container, Segment, List } from 'semantic-ui-react';
 import { Classmates } from '../../api/classes/Classmates';
-import { Contacts } from '../../api/contact/Contacts';
-import { Notes } from '../../api/note/Notes';
-import Note from '../components/Note';
-import ListFriend from '../components/ListFriend';
 import { StudySessions } from '../../api/studysession/StudySessions';
 import SessionList from '../components/SessionList';
 
@@ -93,7 +88,7 @@ export default withTracker(() => {
   return {
     currentUser: Meteor.user() ? `${Meteor.user().username}` : '',
     classID: Classmates.find({}).fetch(),
-    userClasses: Meteor.user() ? Meteor.user().profile.classes : [],
+    userClasses: Meteor.user() ? Meteor.user().profile.classes : [''],
     sessions: StudySessions.find({}).fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
