@@ -64,7 +64,7 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
             <Segment>
-              <List>
+              <List divided relaxed>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
               </List>
