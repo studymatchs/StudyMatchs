@@ -5,6 +5,7 @@ import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
 import { Classmates } from '../../api/classes/Classmates';
 import { StudySessions } from '../../api/studysession/StudySessions';
+import { UserClasses } from '../../api/profile/UserClasses';
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Contacts', function publish() {
@@ -42,7 +43,7 @@ Meteor.publish('Notes', function publish() {
 
 Meteor.publish('Classmates', function publish() {
   if (this.userId) {
-    const classmate = Meteor.users.findOne(this.userId).classes;
+    // const classmate = Meteor.users.findOne(this.userId).classes;
     return Classmates.find();
   }
   return this.ready();
@@ -52,6 +53,14 @@ Meteor.publish('Sessions', function publish() {
   if (this.userId) {
     // const classmate = Meteor.users.findOne(this.userId).username;
     return StudySessions.find();
+  }
+  return this.ready();
+});
+
+Meteor.publish('Profile', function publish() {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return UserClasses.find({ userID: username });
   }
   return this.ready();
 });

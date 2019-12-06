@@ -5,6 +5,7 @@ import TextField from 'uniforms-semantic/TextField';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import SubmitField from 'uniforms-semantic/SubmitField';
+
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
@@ -18,6 +19,7 @@ const formSchema = new SimpleSchema({
   time: String,
   description: String,
   subject: String,
+  emergency: Boolean,
 });
 
 /** Renders the Page for adding a document. */
@@ -25,9 +27,9 @@ class AddStudySession extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { name, location, time, description, subject } = data;
+    const { name, location, time, description, subject, SOS } = data;
     const owner = Meteor.user().username;
-    StudySessions.insert({ name, location, time, description, subject, owner },
+    StudySessions.insert({ name, location, time, description, subject, SOS, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');

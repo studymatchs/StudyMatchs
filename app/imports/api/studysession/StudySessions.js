@@ -16,6 +16,10 @@ const StudySessionSchema = new SimpleSchema({
     allowedValues: ['ICS', 'Math', 'Biology', 'Chemistry', 'Physics', 'Art/Design', 'Performing Arts', 'Other'],
     defaultValue: 'Other',
   },
+  SOS: {
+    type: Boolean,
+    defaultValue: false,
+  },
   owner: String,
 }, { tracker: Tracker });
 

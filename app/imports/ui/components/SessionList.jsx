@@ -15,7 +15,7 @@ class SessionList extends React.Component {
                     <List.Description>
                         {this.props.SessionList.description}
                     </List.Description>
-                <List.Content extra>
+                <List.Content>
                     {this.props.SessionList.date}
                 </List.Content>
                 </List.Content>

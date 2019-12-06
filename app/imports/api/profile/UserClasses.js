@@ -11,12 +11,12 @@ const UserClassesSchema = new SimpleSchema({
   firstName: String,
   lastName: String,
   major: String,
-  classes: Array,
+  classes: [String],
   image: String,
   description: String,
   sign: String,
   gpa: String,
-  friendList: Array,
+  friendList: [String],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

@@ -6,20 +6,21 @@ import { Grid, Icon, Header, Tab, Container, Segment, List } from 'semantic-ui-r
 import { Classmates } from '../../api/classes/Classmates';
 import { StudySessions } from '../../api/studysession/StudySessions';
 import SessionList from '../components/SessionList';
+import { UserClasses } from '../../api/profile/UserClasses';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
-  classmateList(classNam) {
+  classmateList(classNam, user) {
     const fullList = ['None'];
     let forward = 0;
-    const myName = `${Meteor.user().profile.firstName} ${Meteor.user().profile.lastName}`;
+    const myName = `${user.firstName} ${user.lastName}`;
     for (let s = 0; s < this.props.classID.length; s++) {
       if (this.props.classID[s].className === classNam && this.props.classID[s].classmateName !== myName) {
         fullList[forward] = `${this.props.classID[s].classmateName}`;
         forward++;
       }
     }
-    console.log(fullList);
+    // console.log(fullList);
     return fullList;
   }
 
@@ -30,16 +31,19 @@ class UserLanding extends React.Component {
       { menuItem: 'ICS103', pane: 'ICS103 Content' },
     ];
     // eslint-disable-next-line max-len
-    if (typeof (Meteor.user().profile) !== 'undefined') {
-      panes = this.props.userClasses.map((className) => ({
-        menuItem: className,
-        pane: this.classmateList(className),
-      }));
+    const dummyObject = {};
+    const userObject = Object.assign(dummyObject, this.props.userClasses[0]);
+    if (typeof (userObject.classes) !== 'undefined') {
+      panes = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className, userObject) }));
     }
+    console.log(userObject.classes);
+    // eslint-disable-next-line max-len
+    // const panes2 = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
+    console.log(userObject.classes);
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
-          <Header as="h1" inverted>Welcome, {this.props.currentUser}</Header>
+          <Header as="h1" inverted>Welcome, {userObject.firstName}</Header>
           </Container>
         <Grid textAlign='center' stackable container columns={3} >
 
@@ -89,12 +93,13 @@ export default withTracker(() => {
   // Get access to Stuff documents.
   const subscription = Meteor.subscribe('Classmates');
   const subscription2 = Meteor.subscribe('Sessions');
+  const subscription3 = Meteor.subscribe('Profile');
 
   return {
     currentUser: Meteor.user() ? `${Meteor.user().username}` : '',
     classID: Classmates.find({}).fetch(),
-    userClasses: Meteor.user() ? Meteor.user().profile.classes : [''],
+    userClasses: UserClasses.find({}).fetch(),
     sessions: StudySessions.find({}).fetch(),
-    ready: subscription.ready() && subscription2.ready(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
   };
 })(UserLanding);
