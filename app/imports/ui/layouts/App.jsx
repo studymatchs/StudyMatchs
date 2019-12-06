@@ -13,6 +13,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import ListContacts from '../pages/ListContacts';
 import ListContactsAdmin from '../pages/ListContactsAdmin';
+import ListMessagesAdmin from '../pages/ListMessagesAdmin';
 import AddContact from '../pages/AddContact';
 import EditContact from '../pages/EditContact';
 import UserLanding from '../pages/UserLanding';
@@ -37,6 +38,7 @@ class App extends React.Component {
               <ProtectedRoute path="/AddMessage" component={AddMessage}/>
               <ProtectedRoute path="/ListMessages" component={ListMessages}/>
               <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
+              <AdminProtectedRoute path="/admin" component={ListMessagesAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>
