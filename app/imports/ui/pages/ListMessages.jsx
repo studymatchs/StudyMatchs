@@ -32,9 +32,9 @@ class ListMessages extends React.Component {
                 {this.props.messages.map((message, index) => <Modal trigger={<Button>{message.Name} Board</Button>}>
                   <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} />
                 <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
-                  <Button icon onClick={this.deleteThisMessage.bind(this)}>
-                  <Icon name='trash' />
-                </Button>
+                  <Button icon onClick={this.deleteThisMessage.bind(this.message)}>
+                    <Icon name='trash' />
+                  </Button>
                 </Modal>)}
               </Card.Group>
 
