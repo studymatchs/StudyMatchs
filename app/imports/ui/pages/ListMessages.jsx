@@ -12,9 +12,13 @@ import { NavLink } from 'react-router-dom';
 class ListMessages extends React.Component {
 
 
-  deleteThisMessage() {
-    Messages.remove(this.props.message._id);
+
+
+  deleteThisMessage =(i) => {
+    console.log("gg", this.props, i);
+    Messages.remove(this.props.messages[i]._id);
   }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -30,9 +34,11 @@ class ListMessages extends React.Component {
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.messages.map((message, index) => <Modal trigger={<Button>{message.Name} Board</Button>}>
+
                   <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} />
                 <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
-                  <Button icon onClick={this.deleteThisMessage.bind(this.message)}>
+
+                  <Button icon onClick={this.deleteThisMessage.bind(this.message, index)}>
                     <Icon name='trash' />
                   </Button>
                 </Modal>)}
