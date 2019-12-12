@@ -21,12 +21,11 @@ class Message extends React.Component {
             <Feed>
               {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
             </Feed>
-            <Modal trigger={<Button>Board</Button>}>
+
             </div>
 
             <Modal trigger={<Button>Board</Button>}>
               <div className='standard-size'>
->>>>>>> c5b16869ba8a5132055cbe18adf41c98bdf76e51
               <Feed>
                 <Header>{this.props.message.Name}</Header>
                 {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
