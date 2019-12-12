@@ -25,6 +25,11 @@ Meteor.publish('ContactsAdmin', function publish() {
   return this.ready();
 });
 
+/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+Meteor.publish('AllContacts', function publish() {
+    return Contacts.find();
+});
+
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Messages', function publish() {
   if (this.userId) {
