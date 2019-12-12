@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image, Card, Feed } from 'semantic-ui-react';
+import { Header, Card, Feed, Modal, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter, Link, NavLink } from 'react-router-dom';
 import AddNote from './AddNote';
 import Note from './Note';
 
@@ -20,6 +20,16 @@ class Message extends React.Component {
             <Feed>
               {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
             </Feed>
+
+            <Modal trigger={<Button>Board</Button>}>
+              <Feed>
+                <Header>{this.props.message.Name}</Header>
+                {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+              </Feed>
+
+              <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
+
+            </Modal>
           </Card.Content>
           <Card.Content extra>
             <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
