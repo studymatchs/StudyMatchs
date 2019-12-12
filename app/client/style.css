@@ -25,3 +25,8 @@
   background-color: whitesmoke;
 }
 
+.standard-size {
+  max-height: 300px;
+  overflow: auto;
+}
+
