@@ -26,24 +26,33 @@ class UserLanding extends React.Component {
 
   render() {
     let panes = [
-      { menuItem: 'ICS101', pane: '' },
-      { menuItem: 'ICS102', pane: 'ICS102 Content' },
-      { menuItem: 'ICS103', pane: 'ICS103 Content' },
+      { menuItem: '', pane: 'You have not enrolled in any classes' },
     ];
     // eslint-disable-next-line max-len
-    const dummyObject = {};
-    const userObject = Object.assign(dummyObject, this.props.userClasses[0]);
-    if (typeof (userObject.classes) !== 'undefined') {
-      panes = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className, userObject) }));
-    }
-    console.log(userObject.classes);
+    /*let dummyObject = {
+      userID: 'None',
+      firstName: 'None',
+      lastName: 'None',
+      major: 'None',
+      classes: ['None'],
+      image: 'None',
+      description: 'None',
+      sign: 'None',
+      gpa: 'None',
+      friendList: ['None'],
+    };
+    dummyObject = Object.assign(dummyObject, this.props.userClasses.pop());
+    if (typeof (dummyObject.classes) !== 'undefined') {
+      // eslint-disable-next-line max-len
+      panes = dummyObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className, dummyObject) }));
+    } */
+    console.log(this.props.userClasses);
     // eslint-disable-next-line max-len
     // const panes2 = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
-    console.log(userObject.classes);
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
-          <Header as="h1" inverted>Welcome, {userObject.firstName}</Header>
+          {this.props.userClasses.map((foo, index) => <Header key={index} as="h1" inverted>Welcome, {foo.firstName}</Header>)}
           </Container>
         <Grid textAlign='center' stackable container columns={3} >
 
@@ -60,7 +69,7 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="file alternate" inverted/>
             <Header as="h1" inverted>Class Details</Header>
             <Segment>
-            <Tab panes={panes} renderActiveOnly={false} />
+              {this.props.userClasses.map((foo, index) => <li key={index}>{foo.classes}</li>)}
             </Segment>
           </Grid.Column>
 
@@ -85,7 +94,7 @@ UserLanding.propTypes = {
   currentUser: PropTypes.string,
   classID: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
-  userClasses: PropTypes.array.isRequired,
+  userClasses: PropTypes.array,
   sessions: PropTypes.array.isRequired,
 };
 
