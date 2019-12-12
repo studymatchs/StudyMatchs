@@ -20,6 +20,7 @@ import UserLanding from '../pages/UserLanding';
 import AddMessage from '../pages/AddMessage';
 import ListMessages from '../pages/ListMessages';
 import ListContacts from '../pages/ListContacts';
+import ChatList from '../pages/ChatList';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
@@ -35,6 +36,7 @@ class App extends React.Component {
               <ProtectedRoute path="/list" component={ListContacts}/>
               <ProtectedRoute path="/welcome" component={UserLanding}/>
               <ProtectedRoute path="/schedule" component={Schedule}/>
+              <ProtectedRoute path="/chat" component={ChatList}/>
               <ProtectedRoute path="/add" component={AddContact}/>
               <ProtectedRoute path="/addS" component={AddStudySession}/>
               <ProtectedRoute path="/edit/:_id" component={EditContact}/>

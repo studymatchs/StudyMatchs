@@ -16,9 +16,9 @@ class AddChat extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { chat, contactId, createdAt } = data;
+    const { chat, createdAt } = data;
     const owner = Meteor.user().username;
-    Chat.insert({ chat, contactId, createdAt, owner },
+    Chat.insert({ chat, createdAt, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -35,7 +35,7 @@ class AddChat extends React.Component {
     return (
         <AutoForm ref={ref => { fRef = ref; }} schema={ChatSchema} onSubmit={data => this.submit(data, fRef)} >
           <Segment>
-            <TextField label="Chat:" name='Chat'/>
+            <TextField label="Chat:" name='chat'/>
             <SubmitField value='Submit'/>
             <ErrorsField/>
             <HiddenField name='owner' value={this.props.owner}/>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feed } from 'semantic-ui-react';
+import { List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -7,21 +7,25 @@ import { withRouter } from 'react-router-dom';
 class ChatLog extends React.Component {
   render() {
     return (
-        <Feed.Event >
-          <Feed.Content>
-            <Feed.Date content={this.props.ChatLog.createdAt.toLocaleDateString('en-US')} />
-            <Feed.Summary>
+        <List.Item>
+          <List.Icon name='marker' />
+          <List.Content>
+            <List.Header>{this.props.ChatLog.owner}:</List.Header>
+            <List.Content>
               {this.props.ChatLog.chat}
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+            </List.Content>
+            <List.Description>
+              {this.props.ChatLog.createdAt.toString()}
+          </List.Description>
+          </List.Content>
+        </List.Item>
     );
   }
 }
 
 /** Require a document to be passed to this component. */
 ChatLog.propTypes = {
-  ChatLog: PropTypes.array.isRequired,
+  ChatLog: PropTypes.object.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

@@ -1,13 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, List, Button } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, List, Segment } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import ChatLog from '../components/ChatLog';
 import AddChat from '../components/AddChat';
+import { Chat } from '../../api/chat/Chat';
 
-class Chat extends React.Component {
+class ChatList extends React.Component {
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
@@ -18,13 +19,15 @@ class Chat extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Chat</Header>
           {/* eslint-disable-next-line max-len */}
+          <Segment>
           <List divided relaxed>
             {/* eslint-disable-next-line max-len */}
             {this.props.chatLog.map((chatStuff, index) => <ChatLog key={index} ChatLog={chatStuff}/>)}
           </List>
+          </Segment>
 
           <div className="ui center aligned container">
-            <AddChat/>
+            <AddChat owner={Meteor.user().username}/>
           </div>
         </Container>
     );
@@ -32,7 +35,7 @@ class Chat extends React.Component {
   }
 }
 
-Chat.propTypes = {
+ChatList.propTypes = {
   chatLog: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
@@ -44,4 +47,4 @@ export default withTracker(() => {
     chatLog: Chat.find({}).fetch(),
     ready: subscription.ready(),
   };
-})(Chat);
+})(ChatList);
