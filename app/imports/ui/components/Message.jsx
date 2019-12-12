@@ -17,15 +17,19 @@ class Message extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
+            <div className='standard-size'>
             <Feed>
               {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
             </Feed>
+            </div>
 
             <Modal trigger={<Button>Board</Button>}>
+              <div className='standard-size'>
               <Feed>
                 <Header>{this.props.message.Name}</Header>
                 {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
               </Feed>
+              </div>
 
               <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
 
