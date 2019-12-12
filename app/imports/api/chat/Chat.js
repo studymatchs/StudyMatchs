@@ -3,21 +3,17 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const Contacts = new Mongo.Collection('Contacts');
+const Chat = new Mongo.Collection('Chat');
 
 /** Define a schema to specify the structure of each document in the collection. */
-const ContactSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  zodiacSign: String,
-  gpa: String,
-  image: String,
-  description: String,
+const ChatSchema = new SimpleSchema({
+  chat: String,
+  createdAt: Date,
   owner: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-Contacts.attachSchema(ContactSchema);
+Chat.attachSchema(ChatSchema);
 
 /** Make the collection and schema available to other code. */
-export { Contacts, ContactSchema };
+export { Chat, ChatSchema };

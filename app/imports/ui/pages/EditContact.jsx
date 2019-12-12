@@ -18,8 +18,8 @@ class EditContact extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { firstName, lastName, sign, gpa, image, description, _id } = data;
-    Contacts.update(_id, { $set: { firstName, lastName, sign, gpa, image, description } }, (error) => (error ?
+    const { firstName, lastName, zodiacSign, gpa, image, description, _id } = data;
+    Contacts.update(_id, { $set: { firstName, lastName, zodiacSign, gpa, image, description } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -39,7 +39,7 @@ class EditContact extends React.Component {
               <Segment>
                 <TextField name='firstName'/>
                 <TextField name='lastName'/>
-                <TextField name='sign'/>
+                <TextField name='zodiacSign'/>
                 <TextField name='gpa'/>
                 <TextField name='image'/>
                 <LongTextField name='description'/>

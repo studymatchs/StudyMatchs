@@ -5,30 +5,31 @@ import TextField from 'uniforms-semantic/TextField';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import SubmitField from 'uniforms-semantic/SubmitField';
+
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
-import { Contacts } from '../../api/contact/Contacts';
+import { StudySessions } from '../../api/studysession/StudySessions';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
-  firstName: String,
-  lastName: String,
-  zodiacSign: String,
-  gpa: String,
-  image: String,
+  name: String,
+  location: String,
+  time: String,
   description: String,
+  subject: String,
+  emergency: Boolean,
 });
 
 /** Renders the Page for adding a document. */
-class AddContact extends React.Component {
+class AddStudySession extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { firstName, lastName, zodiacSign, gpa, image, description } = data;
+    const { name, location, time, description, subject, SOS } = data;
     const owner = Meteor.user().username;
-    Contacts.insert({ firstName, lastName, zodiacSign, gpa, image, description, owner },
+    StudySessions.insert({ name, location, time, description, subject, SOS, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -45,15 +46,14 @@ class AddContact extends React.Component {
     return (
         <Grid container centered>
           <Grid.Column>
-            <Header as="h2" textAlign="center">Add Contact</Header>
+            <Header as="h2" textAlign="center">Add Study Session</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
-                <TextField name='firstName'/>
-                <TextField name='lastName'/>
-                <TextField name='zodiacSign'/>
-                <TextField name='gpa'/>
-                <TextField name='image'/>
+                <TextField name='name'/>
+                <TextField name='location'/>
+                <TextField name='time'/>
                 <LongTextField name='description'/>
+                <TextField name='subject'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>
@@ -64,4 +64,4 @@ class AddContact extends React.Component {
   }
 }
 
-export default AddContact;
+export default AddStudySession;

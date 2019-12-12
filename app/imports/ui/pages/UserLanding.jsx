@@ -1,22 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Icon, Header, Tab, Container, Feed, Segment } from 'semantic-ui-react';
+import { Grid, Icon, Header, Tab, Container, Segment, List } from 'semantic-ui-react';
+import { Classmates } from '../../api/classes/Classmates';
+import { StudySessions } from '../../api/studysession/StudySessions';
+import SessionList from '../components/SessionList';
+import { UserClasses } from '../../api/profile/UserClasses';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
+  classmateList(classNam, user) {
+    const fullList = ['None'];
+    let forward = 0;
+    const myName = `${user.firstName} ${user.lastName}`;
+    for (let s = 0; s < this.props.classID.length; s++) {
+      if (this.props.classID[s].className === classNam && this.props.classID[s].classmateName !== myName) {
+        fullList[forward] = `${this.props.classID[s].classmateName}`;
+        forward++;
+      }
+    }
+    // console.log(fullList);
+    return fullList;
+  }
+
   render() {
-    const panes = [
-      { menuItem: 'ICS101', pane: 'ICS101 Content' },
+    let panes = [
+      { menuItem: 'ICS101', pane: '' },
       { menuItem: 'ICS102', pane: 'ICS102 Content' },
       { menuItem: 'ICS103', pane: 'ICS103 Content' },
     ];
+    // eslint-disable-next-line max-len
+    const dummyObject = {};
+    const userObject = Object.assign(dummyObject, this.props.userClasses[0]);
+    if (typeof (userObject.classes) !== 'undefined') {
+      panes = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className, userObject) }));
+    }
+    console.log(userObject.classes);
+    // eslint-disable-next-line max-len
+    // const panes2 = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
+    console.log(userObject.classes);
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
-          <Header as="h1" centered inverted>Welcome, {this.props.currentUser}</Header>
+          <Header as="h1" inverted>Welcome, {userObject.firstName}</Header>
           </Container>
         <Grid textAlign='center' stackable container columns={3} >
 
@@ -24,51 +51,27 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="users" inverted/>
             <Header as="h1" inverted>Classmates</Header>
             {/* eslint-disable-next-line max-len */}
+            <Segment>
             <Tab panes={panes} renderActiveOnly={false} />
+            </Segment>
           </Grid.Column>
 
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="file alternate" inverted/>
             <Header as="h1" inverted>Class Details</Header>
+            <Segment>
             <Tab panes={panes} renderActiveOnly={false} />
+            </Segment>
           </Grid.Column>
 
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
-            <Segment color="white">
-              <Feed color="white">
-            <Feed.Event >
-              <Feed.Content>
-                <Feed.Date content="7/7 | 3:30" />
-                <Feed.Summary>
-                  <label>ICS 101</label>
-                  <ul/>
-                  <label>Sinclair Library</label>
-                </Feed.Summary>
-              </Feed.Content>
-            </Feed.Event>
-                <Feed.Event >
-                  <Feed.Content>
-                    <Feed.Date content="7/7 | 3:40" />
-                    <Feed.Summary>
-                      <label>ICS 111</label>
-                      <ul/>
-                      <label>Sinclair Library</label>
-                    </Feed.Summary>
-                  </Feed.Content>
-                </Feed.Event>
-                <Feed.Event >
-                  <Feed.Content>
-                    <Feed.Date content="7/7 | 4:30" />
-                    <Feed.Summary>
-                      <label>ICS 112</label>
-                      <ul/>
-                      <label>Campus Center</label>
-                    </Feed.Summary>
-                  </Feed.Content>
-                </Feed.Event>
-              </Feed>
+            <Segment>
+              <List divided relaxed>
+                {/* eslint-disable-next-line max-len */}
+                {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
+              </List>
             </Segment>
           </Grid.Column>
 
@@ -80,10 +83,23 @@ class UserLanding extends React.Component {
 
 UserLanding.propTypes = {
   currentUser: PropTypes.string,
+  classID: PropTypes.array.isRequired,
+  ready: PropTypes.bool.isRequired,
+  userClasses: PropTypes.array.isRequired,
+  sessions: PropTypes.array.isRequired,
 };
 
-const UserLandingContainer = withTracker(() => ({
-  currentUser: Meteor.user() ? Meteor.user().username : '',
-}))(UserLanding);
+export default withTracker(() => {
+  // Get access to Stuff documents.
+  const subscription = Meteor.subscribe('Classmates');
+  const subscription2 = Meteor.subscribe('Sessions');
+  const subscription3 = Meteor.subscribe('Profile');
 
-export default withRouter(UserLandingContainer);
+  return {
+    currentUser: Meteor.user() ? `${Meteor.user().username}` : '',
+    classID: Classmates.find({}).fetch(),
+    userClasses: UserClasses.find({}).fetch(),
+    sessions: StudySessions.find({}).fetch(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
+  };
+})(UserLanding);

@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Contacts } from '../../api/contact/Contacts';
 import { Messages } from '../../api/message/Messages';
+import { StudySessions } from '../../api/studysession/StudySessions';
 
 /* eslint-disable no-console */
 
@@ -21,5 +22,18 @@ if (Contacts.find().count() === 0) {
   if (Meteor.settings.defaultContacts) {
     console.log('Creating default data.');
     Meteor.settings.defaultContacts.map(data => addContact(data));
+  }
+}
+
+function addStudySession(data) {
+  console.log(`  Adding: ${data.name} ${data.date} (${data.owner})`);
+  StudySessions.insert(data);
+}
+
+/** Initialize the collection if empty. */
+if (StudySessions.find().count() === 0) {
+  if (Meteor.settings.defaultStudySessions) {
+    console.log('Creating default sessions.');
+    Meteor.settings.defaultStudySessions.map(data => addStudySession(data));
   }
 }

@@ -1,5 +1,5 @@
 .digits-landing-background {
-  background-image: url("images/Type0Hiryuu.jpg");
+  background-image: url("images\studymatchs.png");
   background-size: cover;
 }
 
@@ -24,3 +24,9 @@
 .digits-landing-background-color {
   background-color: whitesmoke;
 }
+
+.standard-size {
+  max-height: 300px;
+  overflow: auto;
+}
+
