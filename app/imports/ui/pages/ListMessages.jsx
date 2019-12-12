@@ -11,9 +11,7 @@ import { NavLink } from 'react-router-dom';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListMessages extends React.Component {
 
-
-
-
+  /** Delete method for Message. */
   deleteThisMessage =(i) => {
     console.log("gg", this.props, i);
     Messages.remove(this.props.messages[i]._id);
