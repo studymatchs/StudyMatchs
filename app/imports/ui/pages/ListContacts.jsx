@@ -19,7 +19,7 @@ class ListContacts extends React.Component {
   renderPage() {
     return (
         <Container>
-          <Header as="h2" textAlign="center">List Friends</Header>
+          <Header as="h2" textAlign="center">List Others</Header>
           <Card.Group>
             {/* eslint-disable-next-line max-len */}
             {this.props.contacts.map((contact, index) => <Contact key={index} contact={contact} notes={this.props.notes.filter(note => (note.contactId === contact._id))}/>)}
@@ -39,7 +39,7 @@ ListContacts.propTypes = {
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
   // Get access to Stuff documents.
-  const subscription = Meteor.subscribe('Contacts');
+  const subscription = Meteor.subscribe('AllContacts');
   const subscription2 = Meteor.subscribe('Notes');
   return {
     contacts: Contacts.find({}).fetch(),
