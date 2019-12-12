@@ -20,6 +20,10 @@ const StudySessionSchema = new SimpleSchema({
     type: Boolean,
     defaultValue: false,
   },
+  finished: {
+    type: Boolean,
+    defaultValue: false,
+  },
   team: {
     type: String,
     defaultValue: [''],
