@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Image, Card, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
@@ -23,9 +24,11 @@ class Contact extends React.Component {
               {this.props.contact.description}
             </Card.Description>
           </Card.Content>
-          <Card.Content extra>
+
+          {(this.props.contact.owner === Meteor.user().username) ?
+            (<Card.Content extra>
             <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
-          </Card.Content>
+          </Card.Content>) : ''}
           <Card.Content extra>
             <Feed>
               {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
