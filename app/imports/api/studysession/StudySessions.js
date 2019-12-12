@@ -21,7 +21,7 @@ const StudySessionSchema = new SimpleSchema({
     defaultValue: false,
   },
   team: {
-    type: [String],
+    type: String,
     defaultValue: [''],
   },
   owner: String,
