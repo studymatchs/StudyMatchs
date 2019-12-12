@@ -19,12 +19,14 @@ class ChatList extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Chat</Header>
           {/* eslint-disable-next-line max-len */}
+          <div className='standard-size' id='chatWindow'>
           <Segment>
           <List divided relaxed>
             {/* eslint-disable-next-line max-len */}
             {this.props.chatLog.map((chatStuff, index) => <ChatLog key={index} ChatLog={chatStuff}/>)}
           </List>
           </Segment>
+          </div>
 
           <div className="ui center aligned container">
             <AddChat owner={Meteor.user().username}/>
