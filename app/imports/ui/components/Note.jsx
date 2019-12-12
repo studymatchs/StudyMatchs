@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feed } from 'semantic-ui-react';
+import { Feed, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -9,7 +9,12 @@ class Note extends React.Component {
     return (
         <Feed.Event >
           <Feed.Content>
-            <Feed.Date content={this.props.note.createdAt.toLocaleDateString('en-US')} />
+            <Feed.Date>{this.props.note.owner}:</Feed.Date>
+            <Feed.Summary>
+              <Feed.Date content={this.props.note.createdAt.toLocaleDateString('en-US')} />
+            </Feed.Summary>
+          </Feed.Content>
+          <Feed.Content>
             <Feed.Summary>
               {this.props.note.note}
             </Feed.Summary>
