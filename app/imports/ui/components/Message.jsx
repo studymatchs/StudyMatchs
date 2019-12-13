@@ -21,19 +21,15 @@ class Message extends React.Component {
             <Feed>
               {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
             </Feed>
-
             </div>
-
             <Modal trigger={<Button>Board</Button>}>
               <div className='standard-size'>
-              <Feed>
-                    <Header>{this.props.message.Name}</Header>
+                <Feed>
+                  <Header>{this.props.message.Name}</Header>
                     {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
-              </Feed>
+                </Feed>
               </div>
-
               <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
-
             </Modal>
           </Card.Content>
           <Card.Content extra>
