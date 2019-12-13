@@ -34,7 +34,8 @@ class Message extends React.Component {
     return (
         <Card>
           <Card.Content>
-            <Card.Header>{this.props.message.Name} {this.props.message.Name}</Card.Header>
+            <Card.Header>{this.props.message.Name} {this.props.message.Name} </Card.Header>
+            <Card.Content>Made  by  {this.props.message.owner}</Card.Content>
             <Card.Description>
               {this.props.message.description}
             </Card.Description>

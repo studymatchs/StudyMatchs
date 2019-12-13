@@ -1,11 +1,16 @@
 import React from 'react';
-import { Feed, List } from 'semantic-ui-react';
+import { Button, Feed, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import swal from 'sweetalert';
+import { Notes } from '../../api/note/Notes';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Note extends React.Component {
   render() {
+
+
+
     return (
         <Feed.Event >
           <Feed.Content>
@@ -17,6 +22,7 @@ class Note extends React.Component {
           <Feed.Content>
             <Feed.Summary>
               {this.props.note.note}
+
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>

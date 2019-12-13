@@ -25,6 +25,7 @@ class ListMessages extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     console.log("Hello");
+    console.log("Hello2", this.props.messages, " Next ", this.props.notes);
     return (
           <div className="studymachs-message-background-image">
             <Container>
@@ -32,15 +33,9 @@ class ListMessages extends React.Component {
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.messages.map((message, index) =>
-
                   <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} />
-                    
                   )}
-
               </Card.Group>
-
-
-
               <div className="ui center aligned container studymachs-message-foot">
                 <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
               </div>
@@ -48,12 +43,13 @@ class ListMessages extends React.Component {
             </Container>
           </div>
     );
+    console.log("Hello2");
   }
 }
 
 /** Require an array of Stuff documents in the props. */
 ListMessages.propTypes = {
-  Messages: PropTypes.array.isRequired,
+  messages: PropTypes.array.isRequired,
   notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
