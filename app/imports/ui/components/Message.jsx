@@ -45,9 +45,6 @@ class Message extends React.Component {
                 {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
               </Feed>
             </div>
-            <Card.Content extra>
-              <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
-            </Card.Content>
             <Modal trigger={<Button>View Board</Button>}>
               <div className='standard-size'>
                 <Feed>
@@ -55,6 +52,9 @@ class Message extends React.Component {
                   {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
                 </Feed>
               </div>
+              <Card.Content extra>
+                <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
+              </Card.Content>
               <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
             </Modal>
           </Card.Content>
