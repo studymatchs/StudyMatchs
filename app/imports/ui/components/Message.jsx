@@ -35,6 +35,9 @@ class Message extends React.Component {
           <Card.Content extra>
             <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
           </Card.Content>
+          <Card.Meta extra>
+            <Button onClick={this.delete}>DELETE</Button>
+          </Card.Meta>
         </Card>
     );
   }
