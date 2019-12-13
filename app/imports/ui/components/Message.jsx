@@ -27,8 +27,8 @@ class Message extends React.Component {
             <Modal trigger={<Button>Board</Button>}>
               <div className='standard-size'>
               <Feed>
-                <Header>{this.props.message.Name}</Header>
-                {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+                    <Header>{this.props.message.Name}</Header>
+                    {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
               </Feed>
               </div>
 
