@@ -4,9 +4,32 @@ import PropTypes from 'prop-types';
 import { withRouter, Link, NavLink } from 'react-router-dom';
 import AddNote from './AddNote';
 import Note from './Note';
+import swal from 'sweetalert';
+import { Messages } from '../../api/message/Messages';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Message extends React.Component {
+
+  delete =() => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this message board!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+        .then((willDelete) => {
+          if (willDelete) {
+            Messages.remove(this.props.message._id);
+            swal('The message board has been deleted!', {
+              icon: 'success',
+            });
+          } else {
+            swal('Your imaginary file is safe!');
+          }
+        });
+  }
+
   render() {
     return (
         <Card>
@@ -18,25 +41,25 @@ class Message extends React.Component {
           </Card.Content>
           <Card.Content extra>
             <div className='standard-size'>
-            <Feed>
-              {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
-            </Feed>
+              <Feed>
+                {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+              </Feed>
             </div>
-            <Modal trigger={<Button>Board</Button>}>
+            <Card.Content extra>
+              <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
+            </Card.Content>
+            <Modal trigger={<Button>View Board</Button>}>
               <div className='standard-size'>
                 <Feed>
                   <Header>{this.props.message.Name}</Header>
-                    {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+                  {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
                 </Feed>
               </div>
               <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
             </Modal>
           </Card.Content>
-          <Card.Content extra>
-            <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
-          </Card.Content>
           <Card.Meta extra>
-            <Button onClick={this.delete}>DELETE</Button>
+            <Button onClick={this.delete}>Delete Board</Button>
           </Card.Meta>
         </Card>
     );
