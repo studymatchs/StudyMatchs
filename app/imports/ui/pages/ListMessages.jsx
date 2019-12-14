@@ -15,6 +15,7 @@ class ListMessages extends React.Component {
   deleteThisMessage =(i) => {
     console.log("gg", this.props, i);
     Messages.remove(this.props.messages[i]._id);
+    console.log(" I see ", this.props.notes.filter(note => (note.contactId === message._id)));
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -25,7 +26,8 @@ class ListMessages extends React.Component {
   /** Render the page once subscriptions have been received. */
   renderPage() {
     console.log("Hello");
-    console.log("Hello2", this.props.messages, " Next ", this.props.notes);
+    console.log("Hello2", this.props.messages, " Next ", this.props.notes.filter(note =>(note.contactId === 'zitp8gEBvMJ2CGFcK')));
+
     return (
           <div className="studymachs-message-background-image">
             <Container>

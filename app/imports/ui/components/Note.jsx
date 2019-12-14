@@ -49,7 +49,7 @@ class Note extends React.Component {
 
           <Feed.Content>
             <Feed.Summary>
-              <Button animated onClick={this.delete}>
+              <Button animated='fade' onClick={this.delete}>
                 <Button.Content visible><Icon name='trash' /></Button.Content>
                 <Button.Content hidden>delete</Button.Content>
               </Button>

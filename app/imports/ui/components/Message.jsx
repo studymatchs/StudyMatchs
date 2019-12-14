@@ -6,6 +6,7 @@ import AddNote from './AddNote';
 import Note from './Note';
 import swal from 'sweetalert';
 import { Messages } from '../../api/message/Messages';
+import { Notes } from '../../api/note/Notes';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Message extends React.Component {
@@ -19,6 +20,7 @@ class Message extends React.Component {
         .then((willDelete) => {
           if (willDelete) {
             Messages.remove(this.props.message._id);
+            Notes.remove(this.props.notes.filter(note =>(note.contactId === this.props.message._id)));
             swal('The message board has been deleted!', {
               icon: 'success',
             });
