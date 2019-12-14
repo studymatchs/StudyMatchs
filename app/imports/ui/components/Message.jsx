@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Card, Feed, Modal, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link, NavLink } from 'react-router-dom';
+import { withRouter, NavLink } from 'react-router-dom';
 import AddNote from './AddNote';
 import Note from './Note';
 import swal from 'sweetalert';
@@ -15,8 +15,6 @@ class Message extends React.Component {
       title: 'Are you sure?',
       text: 'Once deleted, you will not be able to recover this message board!',
       icon: 'warning',
-      buttons: true,
-      dangerMode: true,
     })
         .then((willDelete) => {
           if (willDelete) {
@@ -25,7 +23,7 @@ class Message extends React.Component {
               icon: 'success',
             });
           } else {
-            swal('Your imaginary file is safe!');
+            swal('');
           }
         });
   }
