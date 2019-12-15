@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, Card, Feed } from 'semantic-ui-react';
+import { Card, Feed } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import Note from './Note';
+import NoteAdmin from './NoteAdmin';
 import AddNote from './AddNote';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -19,7 +19,7 @@ class MessageAdmin extends React.Component {
           </Card.Content>
           <Card.Content extra>
             <Feed>
-              {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+              {this.props.notes.map((note, index) => <NoteAdmin key={index} note={note}/>)}
             </Feed>
           </Card.Content>
           <Card.Content extra>

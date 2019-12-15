@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { Notes } from '../../api/note/Notes';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-class Note extends React.Component {
+class NoteAdmin extends React.Component {
 
 
   delete =() => {
@@ -43,15 +43,14 @@ class Note extends React.Component {
           <Feed.Content>
             <Feed.Summary>
               {this.props.note.note}
-
             </Feed.Summary>
           </Feed.Content>
 
           <Feed.Content>
             <Feed.Summary>
               <Button animated='fade' onClick={this.delete}>
-                <Button.Content visible>Admin <Icon name='trash' /></Button.Content>
-                <Button.Content hidden>Admin delete</Button.Content>
+                <Button.Content visible><Icon name='trash' /></Button.Content>
+                <Button.Content hidden>delete</Button.Content>
               </Button>
             </Feed.Summary>
           </Feed.Content>
@@ -62,9 +61,9 @@ class Note extends React.Component {
 }
 
 /** Require a document to be passed to this component. */
-Note.propTypes = {
+NoteAdmin.propTypes = {
   note: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(Note);
+export default withRouter(NoteAdmin);

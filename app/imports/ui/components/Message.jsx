@@ -19,13 +19,14 @@ class Message extends React.Component {
     })
         .then((willDelete) => {
           if (willDelete) {
+            //Notes.remove(this.props.notes.filter(note =>(this.props.notes.contactId === this.props.message._id)));
+            //_.each((this.props.notes.filter(note =>(this.props.notes.contactId === this.props.message._id), Notes.remove)
             Messages.remove(this.props.message._id);
-            Notes.remove(this.props.notes.filter(note =>(note.contactId === this.props.message._id)));
-            swal('The message board has been deleted!', {
+            swal('The message board has been deleted.', {
               icon: 'success',
             });
           } else {
-            swal('');
+            swal('done');
           }
         });
   }
@@ -60,7 +61,7 @@ class Message extends React.Component {
             </Modal>
           </Card.Content>
           <Card.Meta extra>
-            <Button onClick={this.delete}>Delete Board</Button>
+            <Button onClick={this.delete}>Admin Delete Board</Button>
           </Card.Meta>
         </Card>
     );
