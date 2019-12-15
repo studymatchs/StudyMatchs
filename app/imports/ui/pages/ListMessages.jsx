@@ -11,8 +11,6 @@ import { NavLink } from 'react-router-dom';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListMessages extends React.Component {
 
-  
-
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -20,8 +18,9 @@ class ListMessages extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-
+    console.log("Hello2", this.props.messages, " Next ", this.props.notes);
     return (
+
           <div className="studymachs-message-background-image">
             <Container>
               <Header as="h2" textAlign="center">Message Boards</Header>
