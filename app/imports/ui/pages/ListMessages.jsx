@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Button, Icon, Modal  } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import Message from '../components/Message';
@@ -25,8 +25,6 @@ class ListMessages extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    console.log("Hello");
-    console.log("Hello2", this.props.messages, " Next ", this.props.notes.filter(note =>(note.contactId === 'zitp8gEBvMJ2CGFcK')));
 
     return (
           <div className="studymachs-message-background-image">
@@ -45,7 +43,6 @@ class ListMessages extends React.Component {
             </Container>
           </div>
     );
-    console.log("Hello2");
   }
 }
 
