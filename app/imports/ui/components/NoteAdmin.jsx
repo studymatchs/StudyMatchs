@@ -50,7 +50,7 @@ class NoteAdmin extends React.Component {
             <Feed.Summary>
               <Button animated='fade' onClick={this.delete}>
                 <Button.Content visible><Icon name='trash' /></Button.Content>
-                <Button.Content hidden>delete</Button.Content>
+                <Button.Content hidden>Admin delete</Button.Content>
               </Button>
             </Feed.Summary>
           </Feed.Content>

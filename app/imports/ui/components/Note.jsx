@@ -8,7 +8,7 @@ import { Notes } from '../../api/note/Notes';
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Note extends React.Component {
 
-
+  // delete constructor for Note
   delete =() => {
     swal({
       title: 'Are you sure?',
@@ -32,7 +32,11 @@ class Note extends React.Component {
   render() {
 
     return (
+
+        // start feed
         <Feed.Event >
+
+
           <Feed.Content>
             <Feed.Date>{this.props.note.owner}:</Feed.Date>
             <Feed.Summary>
@@ -50,8 +54,8 @@ class Note extends React.Component {
           <Feed.Content>
             <Feed.Summary>
               <Button animated='fade' onClick={this.delete}>
-                <Button.Content visible>Admin <Icon name='trash' /></Button.Content>
-                <Button.Content hidden>Admin delete</Button.Content>
+                <Button.Content visible><Icon name='trash' /></Button.Content>
+                <Button.Content hidden>delete</Button.Content>
               </Button>
             </Feed.Summary>
           </Feed.Content>

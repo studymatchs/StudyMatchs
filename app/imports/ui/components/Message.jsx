@@ -61,7 +61,7 @@ class Message extends React.Component {
             </Modal>
           </Card.Content>
           <Card.Meta extra>
-            <Button onClick={this.delete}>Admin Delete Board</Button>
+            <Button onClick={this.delete}>Delete Board</Button>
           </Card.Meta>
         </Card>
     );
