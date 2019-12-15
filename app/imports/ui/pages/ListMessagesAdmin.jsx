@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import Message from '../components/Message';
+import Message from '../components/MessageAdmin';
 import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
 import { NavLink } from 'react-router-dom';
