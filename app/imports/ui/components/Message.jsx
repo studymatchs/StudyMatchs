@@ -7,6 +7,7 @@ import Note from './Note';
 import swal from 'sweetalert';
 import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
+import ModalDescription from 'semantic-ui-react/dist/commonjs/modules/Modal/ModalDescription';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Message extends React.Component {
@@ -51,13 +52,13 @@ class Message extends React.Component {
               <div className='standard-size'>
                 <Feed>
                   <Header>{this.props.message.Name}</Header>
+                  <ModalDescription>{this.props.message.description}</ModalDescription>
                   {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
                 </Feed>
               </div>
               <Card.Content extra>
                 <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
               </Card.Content>
-              <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
             </Modal>
           </Card.Content>
           <Card.Meta extra>
