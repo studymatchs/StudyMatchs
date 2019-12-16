@@ -36,12 +36,12 @@
   "defaultStudySessions": [{
     "name": "ICS 314 Study Session", "location": "ICSpace", "time": "Now",
     "description": "A student who passed ICS 314 is willing to help students taking this course at this time.",
-    "subject": "ICS", "owner": "john@foo.com"
+    "subject": "ICS", "team": [""],"owner": "john@foo.com"
   },
     {
       "name": "ICS 311 Study Session", "location": "POST 127", "time": "Now",
       "description": "A student who passed ICS 311 is willing to help students taking this course at this time.",
-      "subject": "ICS", "owner": "admin@foo.com"
+      "subject": "ICS", "team": [""], "owner": "admin@foo.com"
     }
   ]
 }

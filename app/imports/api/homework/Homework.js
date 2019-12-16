@@ -16,10 +16,7 @@ const HomeworkSchema = new SimpleSchema({
     allowedValues: ['ICS', 'Math', 'Biology', 'Chemistry', 'Physics', 'Art/Design', 'Performing Arts', 'Other'],
     defaultValue: 'Other',
   },
-  meToo: {
-    type: String,
-    defaultValue: [''],
-  },
+  meToo: [String],
   owner: String,
 }, { tracker: Tracker });
 

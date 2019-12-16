@@ -29,7 +29,8 @@ class AddStudySession extends React.Component {
   submit(data, formRef) {
     const { name, location, time, description, subject, SOS } = data;
     const owner = Meteor.user().username;
-    StudySessions.insert({ name, location, time, description, subject, SOS, owner },
+    const team = [' '];
+    StudySessions.insert({ name, location, time, description, subject, SOS, team, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');

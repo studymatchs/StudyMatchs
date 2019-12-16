@@ -20,10 +20,7 @@ const StudySessionSchema = new SimpleSchema({
     type: Boolean,
     defaultValue: false,
   },
-  team: {
-    type: String,
-    defaultValue: [''],
-  },
+  team: [String],
   owner: String,
 }, { tracker: Tracker });
 

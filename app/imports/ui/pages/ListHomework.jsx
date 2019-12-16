@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Button, List, Segment } from 'semantic-ui-react';
+import { Container, Header, Loader, Button, List, Modal } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { Homework } from '../../api/homework/Homeworks';
-import SessionList from '../components/SessionList';
-
+import { Homework } from '../../api/homework/Homework';
+import HomeworkList from '../components/HomeworkList';
+import AddHomework from '../components/AddHomework';
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListHomework extends React.Component {
 
@@ -23,11 +23,13 @@ class ListHomework extends React.Component {
             {/* eslint-disable-next-line max-len */}
               <List divided relaxed>
                 {/* eslint-disable-next-line max-len */}
-                {this.props.myHomework.map((sessionGroup, index) => <ln key={index} SessionList={sessionGroup}/>)}
+                {this.props.myHomework.map((sessionGroup, index) => <HomeworkList key={index} HomeworkList={sessionGroup}/>)}
               </List>
 
             <div className="ui center aligned container">
-              <Button as={NavLink} activeClassName="active" exact to="/addS" key='addS'>Add Session</Button>
+              <Modal trigger={<Button>Add Homework</Button>}>
+                <AddHomework owner={Meteor.user().username}/>
+              </Modal>
             </div>
         </Container>
     );
