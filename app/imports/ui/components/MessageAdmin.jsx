@@ -13,22 +13,25 @@ class MessageAdmin extends React.Component {
   delete =() => {
     swal({
       title: 'Are you sure?',
-      text: 'Once deleted, you will not be able to recover this message board!',
+      text: 'Once deleted, you will not be able to recover this message board. You must delete all messages first',
       icon: 'warning',
     })
         .then((willDelete) => {
           if (willDelete) {
-            //Notes.remove(this.props.notes.filter(note =>(this.props.notes.contactId === this.props.message._id)));
-            //_.each((this.props.notes.filter(note =>(this.props.notes.contactId === this.props.message._id), Notes.remove)
-            Messages.remove(this.props.message._id);
-            swal('The message board has been deleted.', {
-              icon: 'success',
-            });
+            if ((this.props.notes.filter(note => (note.contactId === this.props.message._id))).length === 0) {
+
+              Messages.remove(this.props.message._id);
+              swal('The message board has been deleted.', {
+                icon: 'success',
+              });
+            } else {
+              swal('You must delete all messages first');
+            }
           } else {
             swal('done');
           }
         });
-  }
+  };
 
   render() {
     return (
