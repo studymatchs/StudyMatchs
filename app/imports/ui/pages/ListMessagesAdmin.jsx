@@ -3,10 +3,10 @@ import { Meteor } from 'meteor/meteor';
 import { Container, Header, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import Message from '../components/MessageAdmin';
 import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
-import { NavLink } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListMessagesAdmin extends React.Component {
@@ -25,12 +25,11 @@ class ListMessagesAdmin extends React.Component {
             <Header as="h2" textAlign="center">Message Boards</Header>
             <Card.Group>
               {/* eslint-disable-next-line max-len */}
-              {this.props.messages.map((message, index) =>
-                  <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} />
-              )}
+              {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} />)}
             </Card.Group>
             <div className="ui center aligned container studymachs-message-foot">
-              <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
+              <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board
+              </Button>
             </div>
 
           </Container>
