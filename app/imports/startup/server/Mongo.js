@@ -12,11 +12,6 @@ function addContact(data) {
   Contacts.insert(data);
 }
 
-function addMessage(data) {
-  console.log(`  Adding: ${data.description} (${data.owner})`);
-  Messages.insert(data);
-}
-
 /** Initialize the collection if empty. */
 if (Contacts.find().count() === 0) {
   if (Meteor.settings.defaultContacts) {

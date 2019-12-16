@@ -28,7 +28,7 @@ Meteor.publish('ContactsAdmin', function publish() {
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Messages', function publish() {
   if (this.userId) {
-    //const UserClasses = Meteor.users.findOne(this.userId).classes;
+    // const UserClasses = Meteor.users.findOne(this.userId).classes;
     return Messages.find();
   }
   return this.ready();
