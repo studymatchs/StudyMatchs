@@ -7,33 +7,10 @@ import Note from './Note';
 import swal from 'sweetalert';
 import { Messages } from '../../api/message/Messages';
 import ModalDescription from 'semantic-ui-react/dist/commonjs/modules/Modal/ModalDescription';
-import { Notes } from '../../api/note/Notes';
+
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Message extends React.Component {
-
-  delete =() => {
-    swal({
-      title: 'Are you sure?',
-      text: 'Once deleted, you will not be able to recover this message board. You must delete all messages first',
-      icon: 'warning',
-    })
-        .then((willDelete) => {
-          if (willDelete) {
-            if ((this.props.notes.filter(note => (note.contactId === this.props.message._id))).length === 0) {
-
-              Messages.remove(this.props.message._id);
-              swal('The message board has been deleted.', {
-                icon: 'success',
-              });
-            } else {
-              swal('You must delete all messages first');
-            }
-          } else {
-            swal('done');
-          }
-        });
-  };
 
   render() {
     return (
@@ -64,9 +41,6 @@ class Message extends React.Component {
               </Card.Content>
             </Modal>
           </Card.Content>
-          <Card.Meta extra>
-            <Button onClick={this.delete}>Delete Board</Button>
-          </Card.Meta>
         </Card>
     );
   }
