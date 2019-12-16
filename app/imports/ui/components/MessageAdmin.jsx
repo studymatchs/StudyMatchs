@@ -2,9 +2,9 @@ import React from 'react';
 import { Header, Card, Feed, Modal, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter, NavLink } from 'react-router-dom';
+import swal from 'sweetalert';
 import AddNote from './AddNote';
 import NoteAdmin from './NoteAdmin';
-import swal from 'sweetalert';
 import { Messages } from '../../api/message/Messages';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
@@ -38,7 +38,7 @@ class MessageAdmin extends React.Component {
         <Card>
           <Card.Content>
             <Card.Header>{this.props.message.Name} {this.props.message.Name} </Card.Header>
-            <Card.Content>Made  by  {this.props.message.owner}</Card.Content>
+            <Card.Content>Made  by {this.props.message.owner}</Card.Content>
             <Card.Description>
               {this.props.message.description}
             </Card.Description>
@@ -46,20 +46,21 @@ class MessageAdmin extends React.Component {
           <Card.Content extra>
             <div className='standard-size'>
               <Feed>
-                {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+                {this.props.notes.map((note, index) => <NoteAdmin key={index} note={note}/>)}
               </Feed>
             </div>
             <Modal trigger={<Button>View Board</Button>}>
               <div className='standard-size'>
                 <Feed>
                   <Header>{this.props.message.Name}</Header>
-                  {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
+                  {this.props.notes.map((note, index) => <NoteAdmin key={index} note={note}/>)}
                 </Feed>
               </div>
               <Card.Content extra>
                 <AddNote owner={this.props.message.owner} contactId={this.props.message._id}/>
               </Card.Content>
-              <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
+              <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board
+              </Button>
             </Modal>
           </Card.Content>
           <Card.Meta extra>

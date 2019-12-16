@@ -1,13 +1,10 @@
 import React from 'react';
 import { Header, Card, Feed, Modal, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, NavLink } from 'react-router-dom';
-import AddNote from './AddNote';
-import Note from './Note';
-import swal from 'sweetalert';
-import { Messages } from '../../api/message/Messages';
+import { withRouter } from 'react-router-dom';
 import ModalDescription from 'semantic-ui-react/dist/commonjs/modules/Modal/ModalDescription';
-
+import Note from './Note';
+import AddNote from './AddNote';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Message extends React.Component {

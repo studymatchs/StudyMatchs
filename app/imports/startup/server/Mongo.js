@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Contacts } from '../../api/contact/Contacts';
-import { Messages } from '../../api/message/Messages';
 import { StudySessions } from '../../api/studysession/StudySessions';
 
 /* eslint-disable no-console */
