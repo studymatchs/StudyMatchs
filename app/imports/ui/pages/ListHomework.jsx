@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Button, List, Modal } from 'semantic-ui-react';
+import { Container, Header, Loader, Button, List, Modal, Segment, Grid } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -21,11 +21,27 @@ class ListHomework extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Homework</Header>
             {/* eslint-disable-next-line max-len */}
-              <List divided relaxed>
+          <Grid textAlign='center' stackable container columns={2} >
+            <Grid.Column textAlign='center'>
+              <Header as="h4" textAlign="center">My Homework</Header>
+            <Segment>
+              <List divided relaxed className='standard-size'>
                 {/* eslint-disable-next-line max-len */}
-                {this.props.myHomework.map((sessionGroup, index) => <HomeworkList key={index} HomeworkList={sessionGroup}/>)}
+                {this.props.myHomework.filter(marked => marked.owner === Meteor.user().username ).map((sessionGroup, index) => <HomeworkList key={index} HomeworkList={sessionGroup}/>)}
               </List>
-
+            </Segment>
+            </Grid.Column>
+            <Grid.Column textAlign='center'>
+              <Header as="h4" textAlign="center">Everyone's Homework</Header>
+              <Segment>
+                <List divided relaxed className='standard-size'>
+                  {/* eslint-disable-next-line max-len */}
+                  {this.props.allHomework.map((sessionGroup, index) => <HomeworkList key={index} HomeworkList={sessionGroup}/>)}
+                </List>
+              </Segment>
+            </Grid.Column>
+          </Grid>
+          <br/>
             <div className="ui center aligned container">
               <Modal trigger={<Button>Add Homework</Button>}>
                 <AddHomework owner={Meteor.user().username}/>
@@ -50,7 +66,7 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('MyHomework');
   const subscription2 = Meteor.subscribe('AllHomework');
   return {
-    myHomework: Homework.find({}).fetch(),
+    myHomework: Homework.find().fetch(),
     allHomework: Homework.find().fetch(),
     ready: subscription.ready() && subscription2.ready(),
   };
