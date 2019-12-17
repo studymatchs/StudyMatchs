@@ -29,7 +29,7 @@ if (Meteor.users.find().count() === 0) {
       firstName: 'None',
       lastName: 'None',
       major: 'None',
-      classes: ['None'],
+      classes: ['MATH101'],
       image: 'https://media.wired.com/photos/5b17381815b2c744cb650b5f/master/pass/GettyImages-134367495.jpg',
       description: 'None',
       sign: 'None',

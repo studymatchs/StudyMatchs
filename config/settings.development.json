@@ -5,6 +5,12 @@
     { "email": "joe@foo.com", "password": "changeme", "classes": ["ICS111", "ART112", "MATH101"], "firstName": "Joe", "lastName": "Schmoe" },
     { "email": "sarah@foo.com", "password": "changeme", "classes": ["ICS111", "ART111", "MATH101"], "firstName": "Sarah", "lastName": "Rogers" }
   ],
+  "defaultClassmates": [
+    { "className": "MATH101", "classmate": "sarah@foo.com" },
+    { "className": "MATH101", "classmate": "john@foo.com" },
+    { "className": "MATH101", "classmate": "joe@foo.com" },
+    { "className": "MATH101", "classmate": "admin@foo.com" }
+  ],
 
   "defaultData": [
     { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },

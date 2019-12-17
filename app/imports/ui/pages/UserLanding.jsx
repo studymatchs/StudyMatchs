@@ -46,7 +46,7 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="users" inverted/>
             <Header as="h1" inverted>Classmates</Header>
             {/* eslint-disable-next-line max-len */}
-            <Segment>
+            <Segment className='standard-size'>
               {/* eslint-disable-next-line max-len */}
               {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.filter(theClass => theClass.className === mine).map((member, littleList) => <li key={littleList}>{member.classmate}</li> )}</Tab.Pane> }))}/>)}
             </Segment>
