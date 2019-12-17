@@ -30,7 +30,8 @@ class HomeworkList extends React.Component {
                   </List.Content>
                       ) : (
                       <List.Content>
-                        <Button onClick={() => Homework.update({_id: this.props.HomeworkList._id }, { $addToSet: { meToo: Meteor.user().username } })}>
+                        {/* eslint-disable-next-line max-len */}
+                        <Button onClick={() => (this.props.HomeworkList.meToo.includes(Meteor.user().username) ? (Homework.update({ _id: this.props.HomeworkList._id }, { $pull: { meToo: Meteor.user().username } })) : (Homework.update({ _id: this.props.HomeworkList._id }, { $addToSet: { meToo: Meteor.user().username } })))}>
                           <Icon name='handshake'/>
                           {this.props.HomeworkList.meToo.length}
                         </Button>
