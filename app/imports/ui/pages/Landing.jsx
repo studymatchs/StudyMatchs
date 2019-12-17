@@ -7,7 +7,7 @@ class Landing extends React.Component {
     return (
         <div className="digits-landing-background">
           <Container textAlign='center' >
-            <Header as="h1" centered inverted>Welcome to University of Hawaii StudyMatchs/</Header>
+            <Header as="h1" centered inverted>Welcome to University of Hawaii StudyMatchs</Header>
             <ln/>
             {/* eslint-disable-next-line max-len */}
             <Header as="h3" inverted>StudyMatchs is a UH service dedicated to helping students study by allowing them to schedule study sessions with other students in similar classes.</Header>

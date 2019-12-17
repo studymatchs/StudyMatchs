@@ -9,18 +9,30 @@ import { Roles } from 'meteor/alanning:roles';
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SessionList extends React.Component {
 
-    handleClick() {
+    handleClickTrash() {
         StudySessions.remove(this.props.SessionList._id);
     }
+
+    checkFinished() {
+        if (this.props.SessionList.finished === true) {
+            return 'Finished';
+        }
+        if (this.props.SessionList.SOS === true) {
+            return 'SOS Urgent!';
+        }
+        return 'Ongoing';
+}
+
     render() {
     return (
         <Card raised>
             <Card.Content>
                 <Card.Header>{this.props.SessionList.name} {this.props.SessionList.lastName}</Card.Header>
                 <Card.Description>{this.props.SessionList.time} at {this.props.SessionList.location}</Card.Description>
-                <Label color="grey">
+                <Label color='black'>
                     {this.props.SessionList.subject}
                 </Label>
+                <Label color='red'>{this.checkFinished()}</Label>
                 <Card.Meta>
                     <div className="mini-size">
                     {this.props.SessionList.description}
@@ -30,8 +42,8 @@ class SessionList extends React.Component {
 
             {(this.props.SessionList.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), 'admin')) ?
                 (<Card.Content extra>
-                    <Link to={`/editS/${this.props.SessionList._id}`}>Edit or </Link>
-                        <Button onClick={this.handleClick.bind(this)}>
+                        <Button color='green'><Link to={`/editS/${this.props.SessionList._id}`}>Edit</Link></Button>
+                        <Button color='black' onClick={this.handleClickTrash.bind(this)}>
                             <Button.Content>
                                 <Icon name='trash alternate' inverted/>
                             </Button.Content>
