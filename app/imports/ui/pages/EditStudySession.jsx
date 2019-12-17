@@ -20,8 +20,8 @@ class EditStudySession extends React.Component {
 
   /** On successful submit, insert the data. */
   submit(data) {
-    const { name, location, time, description, subject, SOS, _id } = data;
-    StudySessions.update(_id, { $set: { name, location, time, description, subject, SOS } }, (error) => (error ?
+    const { name, location, time, description, subject, finished, SOS, _id } = data;
+    StudySessions.update(_id, { $set: { name, location, time, description, subject, finished, SOS } }, (error) => (error ?
       swal('Error', error.message, 'error') :
       swal('Success', 'Item updated successfully', 'success')));
   }
@@ -48,7 +48,10 @@ class EditStudySession extends React.Component {
                 <LongTextField name='description'
                                placeholder='Enter any details that may be necessary. Examples include: topics being covered, recommended supplies'/>
                 <SelectField name='subject'/>
-                <BoolField name='SOS' label='SOS'/>
+                <Grid columns="2">
+                  <Grid.Column><BoolField name='SOS' label='SOS'/></Grid.Column>
+                  <Grid.Column><BoolField name='finished' label='Finished?'/></Grid.Column>
+                </Grid>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>

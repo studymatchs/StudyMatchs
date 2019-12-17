@@ -66,12 +66,14 @@ class UserLanding extends React.Component {
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
+            <div className='standard-size'>
             <Segment>
               <List divided relaxed className='standard-size'>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
               </List>
             </Segment>
+            </div>
           </Grid.Column>
 
         </Grid>
