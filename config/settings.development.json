@@ -34,17 +34,17 @@
 ],
 
   "defaultStudySessions": [{
-    "name": "ICS 314 Study Session", "location": "ICSpace", "time": "Now",
+    "name": "ICS 314 Study Session", "location": "ICSpace", "time": "In like... an hour or so",
     "description": "A student who passed ICS 314 is willing to help students taking this course at this time.",
     "subject": "ICS", "owner": "john@foo.com"
   },
     {
-      "name": "ICS 311 Study Session", "location": "POST 127", "time": "Now",
+      "name": "ICS 311 Study Session", "location": "POST 127", "time": "May 19 2020 1730 PST",
       "description": "A student who passed ICS 311 is willing to help students taking this course at this time.",
       "subject": "ICS", "owner": "admin@foo.com"
     },
     {
-      "name": "Christmas Dance Class @ CC", "location": "UHM Campus Center", "time": "December 22",
+      "name": "Christmas Dance Class @ CC", "location": "UHM Campus Center", "time": "December 22 2019",
       "description": "Teaching people how to dance a style of zouk popular in the 1960s in South America... for Christmas!",
       "subject": "Performing Arts", "owner": "admin@foo.com"
     }

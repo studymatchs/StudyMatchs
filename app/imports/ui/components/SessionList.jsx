@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { StudySessions } from '/imports/api/studysession/StudySessions';
 import { Roles } from 'meteor/alanning:roles';
+import swal from 'sweetalert';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SessionList extends React.Component {
 
     handleClickTrash() {
         StudySessions.remove(this.props.SessionList._id);
+        swal('Success', 'Deleted successfully', 'success');
     }
 
     checkFinished() {
