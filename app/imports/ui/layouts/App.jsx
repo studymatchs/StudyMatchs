@@ -14,6 +14,7 @@ import Signout from '../pages/Signout';
 import Schedule from '../pages/Schedule';
 import AddStudySession from '../pages/AddStudySession';
 import ListContactsAdmin from '../pages/ListContactsAdmin';
+import ListMessagesAdmin from '../pages/ListMessagesAdmin';
 import AddContact from '../pages/AddContact';
 import EditContact from '../pages/EditContact';
 import UserLanding from '../pages/UserLanding';
@@ -44,6 +45,7 @@ class App extends React.Component {
               <ProtectedRoute path="/ListMessages" component={ListMessages}/>
               <ProtectedRoute path="/homework" component={ListHomework}/>
               <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
+              <AdminProtectedRoute path="/ListMessagesAdmin" component={ListMessagesAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>
             </Switch>

@@ -21,6 +21,11 @@
   padding-top: 20px;
 }
 
+.note {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .digits-landing-background-color {
   background-color: whitesmoke;
 }
@@ -28,5 +33,7 @@
 .standard-size {
   max-height: 500px;
   overflow: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 

@@ -31,13 +31,15 @@ class NavBar extends React.Component {
               <Menu.Item as={NavLink} activeClassName="active" exact to="/chat" key='chat'>Chat</Menu.Item>,
               <Menu.Item as={NavLink} activeClassName="active" exact to="/homework" key='homework'>Homework</Menu.Item>,
               // eslint-disable-next-line max-len
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Add Message</Menu.Item>,
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Add Message
+            </Menu.Item>,
               // eslint-disable-next-line max-len
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/ListMessages" key='ListMessages'>List Message</Menu.Item>]
-        ) : ''}
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/ListMessages" key='ListMessages'>List Message
+              </Menu.Item>]) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>
-        ) : ''}
+            <Menu.Item as={NavLink} activeClassName="active" exact to="/admin" key='admin'>Admin</Menu.Item>,
+                <Menu.Item as={NavLink} activeClassName="active" exact to="/ListMessagesAdmin" key='admin'>
+                  List Messages Admin</Menu.Item>) : ''}
         <Menu.Item position="right">
           {this.props.currentUser === '' ? (
             <Dropdown text="Login" pointing="top right" icon={'user'}>
