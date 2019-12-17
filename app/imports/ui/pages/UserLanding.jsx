@@ -48,7 +48,7 @@ class UserLanding extends React.Component {
             {/* eslint-disable-next-line max-len */}
             <Segment>
               {/* eslint-disable-next-line max-len */}
-              {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.map((theClass, theList) => <div key={theList}>{theClass.className === mine ? (theClass.classmates.map((theTeam, everyone) => <li key={everyone}>{theTeam}</li>)) : ''}</div>)}</Tab.Pane> }))}/>)}
+              {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.filter(theClass => theClass.className === mine).map((member, littleList) => <li key={littleList}>{member.classmate}</li> )}</Tab.Pane> }))}/>)}
             </Segment>
           </Grid.Column>
 

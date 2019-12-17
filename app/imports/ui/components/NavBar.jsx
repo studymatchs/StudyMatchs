@@ -7,6 +7,7 @@ import { Menu, Dropdown, Header, Image, Card, Modal, Button } from 'semantic-ui-
 import { Roles } from 'meteor/alanning:roles';
 import { UserClasses } from '../../api/profile/UserClasses';
 import EditProfile from './EditProfile';
+import ClassList from './ClassList';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
 class NavBar extends React.Component {
@@ -66,6 +67,9 @@ class NavBar extends React.Component {
                     <Card.Content>
                       <Modal trigger={<Button icon='edit'/>}>
                         <EditProfile doc={myProfile} id={myProfile._id} friends={myProfile.friendList} classes={myProfile.classes}/>
+                      </Modal>
+                      <Modal trigger={<Button content='Show Classes'/>}>
+                        <ClassList ClassList={myProfile.classes} user={myProfile}/>
                       </Modal>
                     </Card.Content>
                   </Card>)}
