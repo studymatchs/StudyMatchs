@@ -27,34 +27,18 @@ class UserLanding extends React.Component {
   }
 
   render() {
-    let panes = [
+    const panes = [
       { menuItem: '', pane: 'You have not enrolled in any classes' },
     ];
-    // eslint-disable-next-line max-len
-    /*let dummyObject = {
-      userID: 'None',
-      firstName: 'None',
-      lastName: 'None',
-      major: 'None',
-      classes: ['None'],
-      image: 'None',
-      description: 'None',
-      sign: 'None',
-      gpa: 'None',
-      friendList: ['None'],
-    };
-    dummyObject = Object.assign(dummyObject, this.props.userClasses.pop());
-    if (typeof (dummyObject.classes) !== 'undefined') {
-      // eslint-disable-next-line max-len
-      panes = dummyObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className, dummyObject) }));
-    } */
     console.log(this.props.userClasses);
     // eslint-disable-next-line max-len
     // const panes2 = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
-          {this.props.userClasses.map((foo, index) => <Header key={index} as="h1" inverted>Welcome, {foo.firstName}</Header>)}
+            {/* eslint-disable-next-line max-len */}
+          {this.props.userClasses.map((foo, index) => <Header key={index} as="h1" inverted>Welcome {foo.firstName !== 'None' ? (foo.firstName) : ''}</Header>)}
+          <br/>
           </Container>
         <Grid textAlign='center' stackable container columns={3} >
 
@@ -63,7 +47,8 @@ class UserLanding extends React.Component {
             <Header as="h1" inverted>Classmates</Header>
             {/* eslint-disable-next-line max-len */}
             <Segment>
-            <Tab panes={panes} renderActiveOnly={false} />
+              {/* eslint-disable-next-line max-len */}
+              {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.map((theClass, theList) => <div key={theList}>{theClass.className === mine ? (theClass.classmates.map((theTeam, everyone) => <li key={everyone}>{theTeam}</li>)) : ''}</div>)}</Tab.Pane> }))}/>)}
             </Segment>
           </Grid.Column>
 
