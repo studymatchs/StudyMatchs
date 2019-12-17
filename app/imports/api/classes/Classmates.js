@@ -8,8 +8,7 @@ const Classmates = new Mongo.Collection('Classmates');
 /** Define a schema to specify the structure of each document in the collection. */
 const ClassmatesSchema = new SimpleSchema({
   className: String,
-  classmateID: String,
-  classmateName: String,
+  classmates: [String],
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

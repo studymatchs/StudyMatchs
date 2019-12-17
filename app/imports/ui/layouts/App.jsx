@@ -21,7 +21,7 @@ import AddMessage from '../pages/AddMessage';
 import ListMessages from '../pages/ListMessages';
 import ListContacts from '../pages/ListContacts';
 import ChatList from '../pages/ChatList';
-
+import ListHomework from '../pages/ListHomework';
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
@@ -42,6 +42,7 @@ class App extends React.Component {
               <ProtectedRoute path="/edit/:_id" component={EditContact}/>
               <ProtectedRoute path="/AddMessage" component={AddMessage}/>
               <ProtectedRoute path="/ListMessages" component={ListMessages}/>
+              <ProtectedRoute path="/homework" component={ListHomework}/>
               <AdminProtectedRoute path="/admin" component={ListContactsAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
               <Route component={NotFound}/>

@@ -3,37 +3,25 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Define a Mongo collection to hold the data. */
-const StudySessions = new Mongo.Collection('StudySessions');
+const Homework = new Mongo.Collection('Homework');
 
 /** Define a schema to specify the structure of each document in the collection. */
-const StudySessionSchema = new SimpleSchema({
-  name: String,
-  location: String,
-  time: String,
+const HomeworkSchema = new SimpleSchema({
+  assignmentName: String,
+  originClass: String,
+  dueDate: String,
   description: String,
   subject: {
     type: String,
     allowedValues: ['ICS', 'Math', 'Biology', 'Chemistry', 'Physics', 'Art/Design', 'Performing Arts', 'Other'],
     defaultValue: 'Other',
   },
-  SOS: {
-    type: Boolean,
-    defaultValue: false,
-  },
-  finished: {
-    type: Boolean,
-    defaultValue: false,
-  },
-  team: {
-    type: String,
-    defaultValue: [''],
-  },
-
+  meToo: [String],
   owner: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-StudySessions.attachSchema(StudySessionSchema);
+Homework.attachSchema(HomeworkSchema);
 
 /** Make the collection and schema available to other code. */
-export { StudySessions, StudySessionSchema };
+export { Homework, HomeworkSchema };

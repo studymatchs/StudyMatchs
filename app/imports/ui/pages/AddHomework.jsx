@@ -11,26 +11,25 @@ import { Meteor } from 'meteor/meteor';
 import 'uniforms-bridge-simple-schema-2'; // required for Uniforms
 import SimpleSchema from 'simpl-schema';
 import { StudySessions } from '../../api/studysession/StudySessions';
+import { Homework } from '../../api/homework/Homework';
 
 /** Create a schema to specify the structure of the data to appear in the form. */
 const formSchema = new SimpleSchema({
   name: String,
-  location: String,
-  time: String,
+  fromClass: String,
+  due: String,
   description: String,
   subject: String,
-  emergency: Boolean,
 });
 
 /** Renders the Page for adding a document. */
-class AddStudySession extends React.Component {
+class AddHomework extends React.Component {
 
   /** On submit, insert the data. */
   submit(data, formRef) {
-    const { name, location, time, description, subject, SOS } = data;
+    const { name, fromClass, due, description, subject } = data;
     const owner = Meteor.user().username;
-    const team = [' '];
-    StudySessions.insert({ name, location, time, description, subject, SOS, team, owner },
+    Homework.insert({ name, fromClass, due, description, subject, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -51,8 +50,8 @@ class AddStudySession extends React.Component {
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
                 <TextField name='name'/>
-                <TextField name='location'/>
-                <TextField name='time'/>
+                <TextField name='fromClass'/>
+                <TextField name='due'/>
                 <LongTextField name='description'/>
                 <TextField name='subject'/>
                 <SubmitField value='Submit'/>
@@ -65,4 +64,4 @@ class AddStudySession extends React.Component {
   }
 }
 
-export default AddStudySession;
+export default AddHomework;

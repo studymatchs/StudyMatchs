@@ -7,6 +7,8 @@ import { Classmates } from '../../api/classes/Classmates';
 import { StudySessions } from '../../api/studysession/StudySessions';
 import SessionList from '../components/SessionList';
 import { UserClasses } from '../../api/profile/UserClasses';
+import { Homework } from '../../api/homework/Homework';
+import HomeworkList from '../components/HomeworkList';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
@@ -67,9 +69,12 @@ class UserLanding extends React.Component {
 
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="file alternate" inverted/>
-            <Header as="h1" inverted>Class Details</Header>
+            <Header as="h1" inverted>My Homework</Header>
             <Segment>
-              {this.props.userClasses.map((foo, index) => <li key={index}>{foo.classes}</li>)}
+              <List divided relaxed className='standard-size'>
+                {/* eslint-disable-next-line max-len */}
+                {this.props.myHomework.filter(marked => marked.owner === Meteor.user().username).map((sessionGroup, index) => <HomeworkList key={index} HomeworkList={sessionGroup}/>)}
+              </List>
             </Segment>
           </Grid.Column>
 
@@ -77,7 +82,7 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
             <Segment>
-              <List divided relaxed>
+              <List divided relaxed className='standard-size'>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
               </List>
@@ -96,6 +101,7 @@ UserLanding.propTypes = {
   ready: PropTypes.bool.isRequired,
   userClasses: PropTypes.array,
   sessions: PropTypes.array.isRequired,
+  myHomework: PropTypes.array.isRequired,
 };
 
 export default withTracker(() => {
@@ -103,12 +109,14 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('Classmates');
   const subscription2 = Meteor.subscribe('Sessions');
   const subscription3 = Meteor.subscribe('Profile');
+  const subscription4 = Meteor.subscribe('MyHomework');
 
   return {
     currentUser: Meteor.user() ? `${Meteor.user().username}` : '',
     classID: Classmates.find({}).fetch(),
     userClasses: UserClasses.find({}).fetch(),
     sessions: StudySessions.find({}).fetch(),
-    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
+    myHomework: Homework.find().fetch(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready() && subscription4.ready(),
   };
 })(UserLanding);
