@@ -5,6 +5,8 @@ import TextField from 'uniforms-semantic/TextField';
 import LongTextField from 'uniforms-semantic/LongTextField';
 import ErrorsField from 'uniforms-semantic/ErrorsField';
 import SubmitField from 'uniforms-semantic/SubmitField';
+import SelectField from 'uniforms-semantic/SelectField';
+import BoolField from 'uniforms-semantic/BoolField';
 
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
@@ -18,8 +20,19 @@ const formSchema = new SimpleSchema({
   location: String,
   time: String,
   description: String,
-  subject: String,
-  emergency: Boolean,
+  subject: {
+    type: String,
+    allowedValues: ['Select one', 'ICS', 'Math', 'Biology', 'Chemistry', 'Physics', 'Art/Design', 'Performing Arts', 'Environmental Sci', 'Business/Econ', 'Law', 'Nursing', 'Medical', 'Other'],
+    defaultValue: 'Select one',
+  },
+  SOS: {
+    type: Boolean,
+    defaultValue: false,
+  },
+  finished: {
+    type: Boolean,
+    defaultValue: false,
+  },
 });
 
 /** Renders the Page for adding a document. */
@@ -50,11 +63,16 @@ class AddStudySession extends React.Component {
             <Header as="h2" textAlign="center">Add Study Session</Header>
             <AutoForm ref={ref => { fRef = ref; }} schema={formSchema} onSubmit={data => this.submit(data, fRef)} >
               <Segment>
-                <TextField name='name'/>
-                <TextField name='location'/>
-                <TextField name='time'/>
-                <LongTextField name='description'/>
-                <TextField name='subject'/>
+                <Grid columns="3">
+                  <Grid.Column><TextField name='name'
+                    label='Title' placeholder='Enter the name of your study session'/></Grid.Column>
+                  <Grid.Column><TextField name='location' placeholder='Enter the address'/></Grid.Column>
+                  <Grid.Column><TextField name='time' placeholder='Enter the date, start time, and end time'/></Grid.Column>
+                </Grid>
+                <LongTextField name='description'
+                placeholder='Enter any details that may be necessary. Examples include: topics being covered, recommended supplies'/>
+                <SelectField name='subject'/>
+                <BoolField name='SOS' label='SOS'/>
                 <SubmitField value='Submit'/>
                 <ErrorsField/>
               </Segment>
