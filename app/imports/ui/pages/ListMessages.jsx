@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Card, Button, Icon, Image, Modal  } from 'semantic-ui-react';
+import { Container, Header, Loader, Card, Button } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import Message from '../components/Message';
 import { Messages } from '../../api/message/Messages';
 import { Notes } from '../../api/note/Notes';
-import { NavLink } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListMessages extends React.Component {
@@ -18,18 +18,19 @@ class ListMessages extends React.Component {
 
   /** Render the page once subscriptions have been received. */
   renderPage() {
-    console.log("Hello");
+
     return (
+
           <div className="studymachs-message-background-image">
             <Container>
               <Header as="h2" textAlign="center">Message Boards</Header>
               <Card.Group>
                 {/* eslint-disable-next-line max-len */}
-                {this.props.messages.map((message, index) => <Modal trigger={<Button>{message.Name} Board</Button>}><Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} /> <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button> </Modal>)}
+                {this.props.messages.map((message, index) => <Message key={index} message={message} notes={this.props.notes.filter(note => (note.contactId === message._id))} />)}
               </Card.Group>
-
               <div className="ui center aligned container studymachs-message-foot">
-                <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board</Button>
+                <Button as={NavLink} activeClassName="active" exact to="/AddMessage" key='AddMessage'>Make Message Board
+                </Button>
               </div>
 
             </Container>
@@ -40,7 +41,7 @@ class ListMessages extends React.Component {
 
 /** Require an array of Stuff documents in the props. */
 ListMessages.propTypes = {
-  Messages: PropTypes.array.isRequired,
+  messages: PropTypes.array.isRequired,
   notes: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };

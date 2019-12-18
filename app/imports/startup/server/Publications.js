@@ -33,16 +33,24 @@ Meteor.publish('AllContacts', function publish() {
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Messages', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Messages.find({ owner: username });
+    // const UserClasses = Meteor.users.findOne(this.userId).classes;
+    return Messages.find();
+  }
+  return this.ready();
+});
+
+/** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */
+Meteor.publish('ContactsAdmin', function publish() {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    return Messages.find();
   }
   return this.ready();
 });
 
 Meteor.publish('Notes', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Notes.find({ owner: username });
+    // const username = Meteor.users.findOne(this.userId).username;
+    return Notes.find();
   }
   return this.ready();
 });
