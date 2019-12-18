@@ -1,12 +1,10 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Header, Loader, Button, List, Segment } from 'semantic-ui-react';
+import { Container, Header, Loader, Button, Card } from 'semantic-ui-react';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { StudySessions } from '../../api/studysession/StudySessions';
-import { StudySession } from '../components/StudySession';
-import { Notes } from '../../api/note/Notes';
 import SessionList from '../components/SessionList';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -23,17 +21,16 @@ class Schedule extends React.Component {
         <Container>
           <Header as="h2" textAlign="center">Schedule</Header>
             {/* eslint-disable-next-line max-len */}
-              <List divided relaxed>
+              <Card.Group>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
-              </List>
+              </Card.Group>
 
             <div className="ui center aligned container">
-              <Button as={NavLink} activeClassName="active" exact to="/addS" key='addS'>Add Session</Button>
+              <Button as={NavLink} color="black" activeClassName="active" exact to="/addS" key='addS'>Add Session</Button>
             </div>
         </Container>
     );
-    // {this.studysessions.map((studysession, index) => <StudySession key={index} studysession={studysession}/>)} needs to fix
   }
 }
 

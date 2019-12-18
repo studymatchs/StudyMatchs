@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Contacts } from '../../api/contact/Contacts';
 import { StudySessions } from '../../api/studysession/StudySessions';
+import { Classmates } from '../../api/classes/Classmates';
 
 /* eslint-disable no-console */
 
@@ -29,5 +30,17 @@ if (StudySessions.find().count() === 0) {
   if (Meteor.settings.defaultStudySessions) {
     console.log('Creating default sessions.');
     Meteor.settings.defaultStudySessions.map(data => addStudySession(data));
+  }
+}
+
+function addClassmates(data) {
+  console.log(`  Adding ${data.classmate} ${data.className}`);
+  Classmates.insert(data);
+}
+
+if (Classmates.find().count() === 0){
+  if (Meteor.settings.defaultClassmates) {
+    console.log(' Adding default classes');
+    Meteor.settings.defaultClassmates.map(data => addClassmates(data));
   }
 }

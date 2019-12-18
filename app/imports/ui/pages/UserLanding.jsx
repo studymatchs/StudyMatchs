@@ -7,6 +7,9 @@ import { Classmates } from '../../api/classes/Classmates';
 import { StudySessions } from '../../api/studysession/StudySessions';
 import SessionList from '../components/SessionList';
 import { UserClasses } from '../../api/profile/UserClasses';
+import { Homework } from '../../api/homework/Homework';
+import HomeworkList from '../components/HomeworkList';
+import ListFriend from '../components/ListFriend';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
@@ -25,34 +28,18 @@ class UserLanding extends React.Component {
   }
 
   render() {
-    let panes = [
+    const panes = [
       { menuItem: '', pane: 'You have not enrolled in any classes' },
     ];
-    // eslint-disable-next-line max-len
-    /*let dummyObject = {
-      userID: 'None',
-      firstName: 'None',
-      lastName: 'None',
-      major: 'None',
-      classes: ['None'],
-      image: 'None',
-      description: 'None',
-      sign: 'None',
-      gpa: 'None',
-      friendList: ['None'],
-    };
-    dummyObject = Object.assign(dummyObject, this.props.userClasses.pop());
-    if (typeof (dummyObject.classes) !== 'undefined') {
-      // eslint-disable-next-line max-len
-      panes = dummyObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className, dummyObject) }));
-    } */
     console.log(this.props.userClasses);
     // eslint-disable-next-line max-len
     // const panes2 = userObject.classes.map((className) => ({ menuItem: className, pane: this.classmateList(className) }));
     return (
         <div className="digits-landing-background">
           <Container textAlign='center'>
-          {this.props.userClasses.map((foo, index) => <Header key={index} as="h1" inverted>Welcome, {foo.firstName}</Header>)}
+            {/* eslint-disable-next-line max-len */}
+          {this.props.userClasses.map((foo, index) => <Header key={index} as="h1" inverted>Welcome {foo.firstName !== 'None' ? (foo.firstName) : ''}</Header>)}
+          <br/>
           </Container>
         <Grid textAlign='center' stackable container columns={3} >
 
@@ -60,16 +47,20 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="users" inverted/>
             <Header as="h1" inverted>Classmates</Header>
             {/* eslint-disable-next-line max-len */}
-            <Segment>
-            <Tab panes={panes} renderActiveOnly={false} />
+            <Segment className='standard-size'>
+              {/* eslint-disable-next-line max-len */}
+              {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.filter(theClass => theClass.className === mine).map((member, littleList) => <ListFriend key={littleList} friend={member.classmate}/> )}</Tab.Pane> }))}/>)}
             </Segment>
           </Grid.Column>
 
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="file alternate" inverted/>
-            <Header as="h1" inverted>Class Details</Header>
+            <Header as="h1" inverted>My Homework</Header>
             <Segment>
-              {this.props.userClasses.map((foo, index) => <li key={index}>{foo.classes}</li>)}
+              <List divided relaxed className='standard-size'>
+                {/* eslint-disable-next-line max-len */}
+                {this.props.myHomework.filter(marked => marked.owner === Meteor.user().username).map((sessionGroup, index) => <HomeworkList key={index} HomeworkList={sessionGroup}/>)}
+              </List>
             </Segment>
           </Grid.Column>
 
@@ -77,7 +68,7 @@ class UserLanding extends React.Component {
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
             <Segment>
-              <List divided relaxed>
+              <List divided relaxed className='standard-size'>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
               </List>
@@ -96,6 +87,7 @@ UserLanding.propTypes = {
   ready: PropTypes.bool.isRequired,
   userClasses: PropTypes.array,
   sessions: PropTypes.array.isRequired,
+  myHomework: PropTypes.array.isRequired,
 };
 
 export default withTracker(() => {
@@ -103,12 +95,14 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('Classmates');
   const subscription2 = Meteor.subscribe('Sessions');
   const subscription3 = Meteor.subscribe('Profile');
+  const subscription4 = Meteor.subscribe('MyHomework');
 
   return {
     currentUser: Meteor.user() ? `${Meteor.user().username}` : '',
     classID: Classmates.find({}).fetch(),
     userClasses: UserClasses.find({}).fetch(),
     sessions: StudySessions.find({}).fetch(),
-    ready: subscription.ready() && subscription2.ready() && subscription3.ready(),
+    myHomework: Homework.find().fetch(),
+    ready: subscription.ready() && subscription2.ready() && subscription3.ready() && subscription4.ready(),
   };
 })(UserLanding);

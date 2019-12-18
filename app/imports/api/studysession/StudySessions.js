@@ -13,8 +13,8 @@ const StudySessionSchema = new SimpleSchema({
   description: String,
   subject: {
     type: String,
-    allowedValues: ['ICS', 'Math', 'Biology', 'Chemistry', 'Physics', 'Art/Design', 'Performing Arts', 'Other'],
-    defaultValue: 'Other',
+    allowedValues: ['Select one', 'ICS', 'Math', 'Biology', 'Chemistry', 'Physics', 'Art/Design', 'Performing Arts', 'Environmental Sci', 'Business/Econ', 'Law', 'Nursing', 'Medical', 'Other'],
+    defaultValue: 'Select one',
   },
   SOS: {
     type: Boolean,
@@ -24,10 +24,8 @@ const StudySessionSchema = new SimpleSchema({
     type: Boolean,
     defaultValue: false,
   },
-  team: {
-    type: String,
-    defaultValue: [''],
-  },
+  team: [String],
+
   owner: String,
 }, { tracker: Tracker });
 

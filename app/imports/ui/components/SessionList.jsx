@@ -1,25 +1,67 @@
+import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { Button, Card, Icon, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
+import { StudySessions } from '/imports/api/studysession/StudySessions';
+import { Roles } from 'meteor/alanning:roles';
+import swal from 'sweetalert';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class SessionList extends React.Component {
-  render() {
+
+    handleClickTrash() {
+        StudySessions.remove(this.props.SessionList._id);
+        swal('Success', 'Deleted successfully', 'success');
+    }
+
+    checkFinished() {
+        if (this.props.SessionList.finished === true) {
+            return 'Finished';
+        }
+        if (this.props.SessionList.SOS === true) {
+            return 'SOS Urgent!';
+        }
+        return 'Ongoing';
+}
+
+    render() {
     return (
-            <List.Item>
-                <List.Icon name='marker' />
-                <List.Content>
-                    <List.Header as='a'>{this.props.SessionList.name} by
-                        {this.props.SessionList.owner}</List.Header>
-                    <List.Description>
-                        {this.props.SessionList.description}
-                    </List.Description>
-                <List.Content>
-                    {this.props.SessionList.date}
-                </List.Content>
-                </List.Content>
-            </List.Item>
+        <Card raised>
+            <Card.Content>
+                <Card.Header>{this.props.SessionList.name} {this.props.SessionList.lastName}</Card.Header>
+                <Card.Description>{this.props.SessionList.time} at {this.props.SessionList.location}</Card.Description>
+                <Label color='black'>
+                    {this.props.SessionList.subject}
+                </Label>
+                <Label color='red'>{this.checkFinished()}</Label>
+                <Card.Meta>
+                    <div className="mini-size">
+                    {this.props.SessionList.description}
+                    </div>
+                </Card.Meta>
+            </Card.Content>
+
+            {(this.props.SessionList.owner === Meteor.user().username || Roles.userIsInRole(Meteor.userId(), 'admin')) ?
+                (<Card.Content extra>
+                        <Button color='green'><Link to={`/editS/${this.props.SessionList._id}`}>Edit</Link></Button>
+                        <Button color='black' onClick={this.handleClickTrash.bind(this)}>
+                            <Button.Content>
+                                <Icon name='trash alternate' inverted/>
+                            </Button.Content>
+                        </Button>
+                </Card.Content>
+                ) : (
+                    <Card.Content>
+                      {/* eslint-disable-next-line max-len */}
+                      <Button onClick={() => (this.props.SessionList.team.includes(Meteor.user().username) ? (StudySessions.update({ _id: this.props.SessionList._id }, { $pull: { team: Meteor.user().username } })) : (StudySessions.update({ _id: this.props.SessionList._id }, { $addToSet: { team: Meteor.user().username } })))}>
+                        {'I\'m going! '}
+                        <Icon name='handshake'/>
+                        {this.props.SessionList.team.length}
+                      </Button>
+                    </Card.Content>
+                )}
+        </Card>
     );
   }
 }
