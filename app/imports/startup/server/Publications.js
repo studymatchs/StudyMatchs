@@ -102,3 +102,10 @@ Meteor.publish('AllHomework', function publish() {
   }
   return this.ready();
 });
+
+Meteor.publish('AllUsers', function publish() {
+  if (this.userId) {
+    return UserClasses.find();
+  }
+  return this.ready();
+});

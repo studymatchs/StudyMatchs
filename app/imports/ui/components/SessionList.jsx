@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Button, Card, Icon, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, NavLink, withRouter } from 'react-router-dom';
 import { StudySessions } from '/imports/api/studysession/StudySessions';
 import { Roles } from 'meteor/alanning:roles';
 import swal from 'sweetalert';
@@ -51,7 +51,16 @@ class SessionList extends React.Component {
                             </Button.Content>
                         </Button>
                 </Card.Content>
-                ) : ''}
+                ) : (
+                    <Card.Content>
+                      {/* eslint-disable-next-line max-len */}
+                      <Button onClick={() => (this.props.SessionList.team.includes(Meteor.user().username) ? (StudySessions.update({ _id: this.props.SessionList._id }, { $pull: { team: Meteor.user().username } })) : (StudySessions.update({ _id: this.props.SessionList._id }, { $addToSet: { team: Meteor.user().username } })))}>
+                        {'I\'m going! '}
+                        <Icon name='handshake'/>
+                        {this.props.SessionList.team.length}
+                      </Button>
+                    </Card.Content>
+                )}
         </Card>
     );
   }

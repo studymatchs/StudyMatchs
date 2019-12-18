@@ -9,6 +9,7 @@ import SessionList from '../components/SessionList';
 import { UserClasses } from '../../api/profile/UserClasses';
 import { Homework } from '../../api/homework/Homework';
 import HomeworkList from '../components/HomeworkList';
+import ListFriend from '../components/ListFriend';
 
 /** A simple static component to render some text for the landing page. */
 class UserLanding extends React.Component {
@@ -48,7 +49,7 @@ class UserLanding extends React.Component {
             {/* eslint-disable-next-line max-len */}
             <Segment className='standard-size'>
               {/* eslint-disable-next-line max-len */}
-              {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.filter(theClass => theClass.className === mine).map((member, littleList) => <li key={littleList}>{member.classmate}</li> )}</Tab.Pane> }))}/>)}
+              {this.props.userClasses.map((foo, index) => <Tab key={index} panes={foo.classes.map((mine) => ({ menuItem: mine, render: () => <Tab.Pane>{this.props.classID.filter(theClass => theClass.className === mine).map((member, littleList) => <ListFriend key={littleList} friend={member.classmate}/> )}</Tab.Pane> }))}/>)}
             </Segment>
           </Grid.Column>
 
@@ -66,14 +67,12 @@ class UserLanding extends React.Component {
           <Grid.Column textAlign='center'>
             <Icon size="huge" name="calendar check" inverted/>
             <Header as="h1" inverted>Upcoming Events</Header>
-            <div className='standard-size'>
             <Segment>
               <List divided relaxed className='standard-size'>
                 {/* eslint-disable-next-line max-len */}
                 {this.props.sessions.map((sessionGroup, index) => <SessionList key={index} SessionList={sessionGroup}/>)}
               </List>
             </Segment>
-            </div>
           </Grid.Column>
 
         </Grid>

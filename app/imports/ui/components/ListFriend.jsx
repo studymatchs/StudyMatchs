@@ -1,5 +1,6 @@
 import React from 'react';
-import { List, Menu } from 'semantic-ui-react';
+import { Button, List, Menu } from 'semantic-ui-react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -9,10 +10,7 @@ class ListFriend extends React.Component {
     return (
         <List.Item>
           <List.Content>
-            <List.Header>Test</List.Header>
-            <List.Summary>
-              Test
-            </List.Summary>
+            <List.Header>{this.props.friend}</List.Header>
           </List.Content>
         </List.Item>
     );
@@ -21,7 +19,7 @@ class ListFriend extends React.Component {
 
 /** Require a document to be passed to this component. */
 ListFriend.propTypes = {
-  friend: PropTypes.object.isRequired,
+  friend: PropTypes.string.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
